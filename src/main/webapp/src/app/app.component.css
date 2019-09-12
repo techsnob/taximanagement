@@ -1,0 +1,12 @@
+aside{
+    width: 20%;
+    border-right: solid 2px;
+    height: 300px;
+    border-bottom: solid;
+    float: left;
+}
+
+section{
+    float: right;
+    width: 78%
+}
