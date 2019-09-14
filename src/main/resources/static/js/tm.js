@@ -17,11 +17,14 @@ function ajaxGet(url) {
 
 $(function() {
 	$("#insertDriver").click(function(e) {
-		var json = {
+		var driver = {
 			driverName : $('input[name="driverName"]').val(),
 			phoneNumber : $('input[name="phoneNumber"]').val(),
 			licenseNumber : $('input[name="licenseNumber"]').val(),
             badgeNumber : $('input[name="badgeNumber"]').val(),
+		};
+
+		var address = {
             houseName: $('input[name="houseName"]').val(),
             streetName: $('input[name="streetName"]').val(),
             landmark: $('input[name="landmark"]').val(),
@@ -31,7 +34,12 @@ $(function() {
             district: $('input[name="district"]').val(),
             state: $('input[name="state"]').val(),
             country: $('input[name="country"]').val()
-		};
+        };
+
+		var json = {
+            driver: driver,
+            address: address
+        };
 		ajaxPost('insertDriverDetails', json).success(function(response) {
 			alert(response.driverName + " added sucessfully!");
 		});
