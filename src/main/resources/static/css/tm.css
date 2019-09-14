@@ -1,0 +1,24 @@
+header {
+    text-align: center;
+    border-bottom: solid 2px;
+    height: 50px;
+    font-size: 35px;
+}
+
+aside {
+    width: 20%;
+    border-right: solid 2px;
+    height: 300px;
+    border-bottom: solid;
+    float: left;
+}
+
+section {
+    float: right;
+    width: 78%;
+    padding-top: 2%;
+}
+
+footer {
+    border-top: solid 1px;
+}

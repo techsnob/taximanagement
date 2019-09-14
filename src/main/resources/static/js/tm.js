@@ -20,10 +20,20 @@ $(function() {
 		var json = {
 			driverName : $('input[name="driverName"]').val(),
 			phoneNumber : $('input[name="phoneNumber"]').val(),
-			licenseNumber : $('input[name="licenseNumber"]').val()
+			licenseNumber : $('input[name="licenseNumber"]').val(),
+            badgeNumber : $('input[name="badgeNumber"]').val(),
+            houseName: $('input[name="houseName"]').val(),
+            streetName: $('input[name="streetName"]').val(),
+            landmark: $('input[name="landmark"]').val(),
+            area: $('input[name="area"]').val(),
+            pincode: $('input[name="pincode"]').val(),
+            village : $('input[name="village"]').val(),
+            district: $('input[name="district"]').val(),
+            state: $('input[name="state"]').val(),
+            country: $('input[name="country"]').val()
 		};
 		ajaxPost('insertDriverDetails', json).success(function(response) {
-			alert(response.driverName + "added sucessfully!");
+			alert(response.driverName + " added sucessfully!");
 		});
 	});
 
@@ -31,7 +41,7 @@ $(function() {
 		ajaxGet('getAllDriverDetails').success(function(response) {
 			
 			$("#driversGrid").jsGrid({
-		        width: "60%",
+		        width: "100%",
 		        height: "400px",
 		        heading: true,
 		        inserting: false,
@@ -57,7 +67,7 @@ $(function() {
 			accountHolderName : $('input[name="accountHolderName"]').val()
 		};
 		ajaxPost('insertAccountDetails', json).success(function(response) {
-			alert(response.accountNumber + "added sucessfully!");
+			alert(response.accountNumber + " added sucessfully!");
 		});
 	});
 	
@@ -65,18 +75,19 @@ $(function() {
 		ajaxGet('getAllAccountDetails').success(function(response) {
 			
 			$("#accountsGrid").jsGrid({
-		        width: "60%",
+		        width: "100%",
 		        height: "400px",
 		        heading: true,
+                noDataContent: "No Accounts added!",
 		        inserting: false,
 		        editing: false,
 		        sorting: true,
 		        paging: true,
 		        data: JSON.parse(response),
 		        fields: [
-		            { title: "Account Number", name: "accountNumber", type: "text", width: 50},
-		            { title: "Driver Name",name: "ifscCode", type: "text", width: 50 },
-		            { title: "Phone Number", name: "accountHolderName", type: "text", width: 50 }
+                    { title: "Account holder name", name: "accountHolderName", type: "text", width: 50 },
+                    { title: "Account Number", name: "accountNumber", type: "text", width: 50},
+                    { title: "IFSC code",name: "ifscCode", type: "text", width: 50 }
 		        ]
 		    });
 

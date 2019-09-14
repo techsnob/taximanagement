@@ -1,61 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Taxi Management</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-     <link type="text/css" rel="stylesheet" href="plugins/jsgrid/jsgrid.min.css" />
-	<link type="text/css" rel="stylesheet" href="plugins/jsgrid/jsgrid-theme.min.css" />
-    <link href="css/main.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body class="skin-blue layout-top-nav">
-	<div class="wrapper">
-		<header class="main-header">
-			<nav class="navbar navbar-static-top" role="navigation">
-			<a href="" class="logo"><b>Taxi Management</b></a>
-			</nav>
-		</header>
+    <link type="text/css" rel="stylesheet" href="plugins/jsgrid/jsgrid.min.css"/>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link type="text/css" rel="stylesheet" href="plugins/jsgrid/jsgrid-theme.min.css"/>
+    <link rel="icon" type="image/x-icon" href="../src/assets/favicon.ico">
+    <link href="css/tm.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="skin-blue layout-top-nav">
+<div class="wrapper">
+    <header>
+        Taxi Management
+    </header>
+    <aside>
+        <ul>
+            <li><a href="">Vehicle details </a></li>
+            <li><a href="">Driver details</a></li>
+        </ul>
+    </aside>
+    <section class="content">
+        <div class="row">
+            <div><input placeholder="Name" type="text" name="driverName"></div>
+            <div><input placeholder="License number" type="text" name="licenseNumber"></div>
+            <div><input placeholder="Phone Number" type="number" name="phoneNumber"></div>
+            <div><input placeholder="Badge Number" type="text" name="badgeNumber"></div>
+            <div><input placeholder="Building name/D-No/ Appt name" type="text" name="houseName"></div>
+            <div><input placeholder="Street/Road/Mohalla" type="text" name="streetName"></div>
+            <div><input placeholder="Landmark" type="text" name="landmark"></div>
+            <div><input placeholder="Area/Locality" type="text" name="area"></div>
+            <div><input placeholder="Pincode" type="number" name="pincode"></div>
+            <div><input placeholder="Village/Town/City" type="text" name="village"></div>
+            <div><input placeholder="District" type="text" name="district"></div>
+            <div><input placeholder="State" type="text" name="state"></div>
+            <div><input placeholder="Country" type="text" name="country"></div>
+            <div><input type="button" value="Submit" id="insertDriver"></div>
+        </div>
+        <div class="row">
+            <button id="getAllDriverDetails">Drivers list</button>
+            <div id="driversGrid"></div>
+        </div>
 
-		<div class="content-wrapper">
-			<section class="content-header">
-				<h1>Dashboard</h1>
-			</section>
+        <div class="row">
+            <div><input placeholder="Account Number" type="text" name="accountNumber"></div>
+            <div><input placeholder="IFSC Code" type="text" name="ifscCode"></div>
+            <div><input placeholder="Account Holder Name" type="text" name="accountHolderName"></div>
+            <div><input type="button" value="Submit" id="addAccount"></div>
+        </div>
+        <div class="row">
+            <button id="getAllAccountDetails">Account details</button>
+            <div id="accountsGrid"></div>
+        </div>
+    </section>
 
-			<section class="content">
-				<div class="row">
-					<div>Driver Name:<input type="text" name="driverName"></div>
-					<div>Phone number: <input type="number" name="phoneNumber"></div>
-					<div>License number:<input type="text" name="licenseNumber"></div>
-					<div><input type="button" value="Submit" id="insertDriver"></div>
-				</div>
-				<div class="row">
-					<button id="getAllDriverDetails">Drivers list</button>
-					<div id="driversGrid"></div>
-				</div>
-				
-				<div class="row">
-					<div>accountNumber:<input type="text" name="accountNumber"></div>
-					<div>ifscCode: <input type="number" name="ifscCode"></div>
-					<div>accountHolderName:<input type="text" name="accountHolderName"></div>
-					<div><input type="button" value="Submit" id="addAccount"></div>
-				</div>
-				<div class="row">
-					<button id="getAllAccountDetails">Account details</button>
-					<div id="accountsGrid"></div>
-				</div>
-				
-			</section>
+    <!--<footer class="main-footer">
+        <div><strong><a href="https://github.com/techsnob" target="_blank"><i>Techsnob</i></a></strong></div>
+    </footer>-->
 
-		</div>
-		<footer class="main-footer">
-			<strong><a href="https://github.com/techsnob" target="_blank"><i>Techsnob</i></a></strong>
-		</footer>
-
-	</div>
-	<script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="plugins/jsgrid/jsgrid.min.js"></script>
-	<script src="js/main.js" type="text/javascript"></script>
+</div>
+<script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="plugins/jsgrid/jsgrid.min.js"></script>
+<script src="js/tm.js" type="text/javascript"></script>
 </body>
 </html>
