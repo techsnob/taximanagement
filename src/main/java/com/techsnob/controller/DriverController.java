@@ -29,7 +29,7 @@ public class DriverController {
 		return driverRepository.findById(driverId);
 	}
 	
-	@GetMapping("/getAllDriverDetails")
+	@GetMapping("/drivers")
 	public Iterable<Driver> getAllDriverDetails() {
 		return driverRepository.findAll();
 	}

@@ -1,4 +1,4 @@
-/*package com.techsnob.controller;
+package com.techsnob.controller;
 
 import java.util.Optional;
 
@@ -9,28 +9,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techsnob.entitiy.Vehicle;
-import com.techsnob.repository.TaxiRepository;
+import com.techsnob.repository.VehicleRepository;
 
 @RestController
 public class TaxiController {
 	
-	private TaxiRepository taxiRepository;
+	private VehicleRepository vehicleRepository;
 
 	@GetMapping("/getTaxiDetails/{taxiId}")
 	public Optional<Vehicle> getTaxiDetails(@PathVariable String taxiId) {
-		return taxiRepository.findById(taxiId);
+		return vehicleRepository.findById(taxiId);
 	}
 	
-	@GetMapping("/getAllTaxiDetails")
+	@GetMapping("/vehicles")
 	public Iterable<Vehicle> getAllTaxiDetails() {
-		return taxiRepository.findAll();
+		return vehicleRepository.findAll();
 	}
 	
 	@PostMapping("/insertTaxiDetails")
 	public Vehicle insertTaxiDetails(@RequestBody Vehicle taxi) {
-		return taxiRepository.save(taxi);
+		return vehicleRepository.save(taxi);
 	}
 	
 	
 }
-*/

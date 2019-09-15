@@ -16,6 +16,10 @@ function ajaxGet(url) {
 }
 
 $(function() {
+	$("[data]").click(function () {
+		$("section").load("pages/"+this.getAttribute("data")+".html");
+    });
+	
 	$("#insertDriver").click(function(e) {
 		var driver = {
 			driverName : $('input[name="driverName"]').val(),
@@ -45,8 +49,8 @@ $(function() {
 		});
 	});
 
-	$("#getAllDriverDetails").click(function(e) {
-		ajaxGet('getAllDriverDetails').success(function(response) {
+	$("section").on('click','button',  function(e) {
+		ajaxGet(this.getAttribute("data")).success(function(response) {
 			
 			$("#driversGrid").jsGrid({
 		        width: "100%",
