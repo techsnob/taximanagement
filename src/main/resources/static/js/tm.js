@@ -15,11 +15,19 @@ function ajaxGet(url) {
 	});
 }
 
+function hideContent(){
+    $("#accounts").hide();
+    $("#vehicles").hide();
+    $("#drivers").hide();
+}
+
 $(function() {
-	$("[data]").click(function () {
-		$("section").load("pages/"+this.getAttribute("data")+".html");
+    hideContent();
+    $("[data]").click(function () {
+        hideContent();
+        $("#"+this.getAttribute("data")).show();
     });
-	
+
 	$("#insertDriver").click(function(e) {
 		var driver = {
 			driverName : $('input[name="driverName"]').val(),
@@ -48,6 +56,17 @@ $(function() {
 			alert(response.driverName + " added sucessfully!");
 		});
 	});
+
+	/*$("#putvehicle").on('click', 'input', function () {
+        var json = {
+            vehicleType: $("input[name=vehicleType]").val(),
+            rcNumber: $("input[name=rcNumber]").val(),
+            vehicleFitness: $("input[name=vehicleFitness]").val()
+        };
+        ajaxPost('putvehicle', json).success(function(response) {
+            alert(response.driverName + " added sucessfully!");
+        });
+    });*/
 
 	$("section").on('click','button',  function(e) {
 		ajaxGet(this.getAttribute("data")).success(function(response) {

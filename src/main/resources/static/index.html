@@ -7,7 +7,7 @@
     <link type="text/css" rel="stylesheet" href="plugins/jsgrid/jsgrid.min.css"/>
     <link type="text/css" rel="stylesheet" href="plugins/jsgrid/jsgrid-theme.min.css"/>
     <link type="image/x-icon" rel="icon" href="../src/assets/favicon.ico">
-    <link type="text/css" rel="stylesheet"  href="css/tm.css" />
+    <link type="text/css" rel="stylesheet" href="css/tm.css"/>
 </head>
 <body>
 <div class="wrapper">
@@ -15,24 +15,62 @@
         Taxi Management
     </header>
     <aside>
-        <div>Vehicle</div>
         <ul>
-            <li><a href="#" data="addvehicle">Add Vehicle</a></li>
             <li><a href="#" data="vehicles">Vehicles</a></li>
         </ul>
-        <div>Driver</div>
         <ul>
-            <li><a href="#" data="adddriver">Add Driver</a></li>
             <li><a href="#" data="drivers">Drivers</a></li>
         </ul>
-        <div>Bank Account
-            <ul>
-                <li><a href="#" data="addaccount">Add Account</a></li>
-                <li><a href="#" data="accounts">Accounts</a></li>
-            </ul>
-        </div>
+        <ul>
+            <li><a href="#" data="accounts">Accounts</a></li>
+        </ul>
+        <ul>
+            <li><a href="#" data="reports">Reports</a></li>
+        </ul>
     </aside>
     <section class="content">
+        <div id="accounts">
+            <div><input placeholder="Account Number" type="text" name="accountNumber"></div>
+            <div><input placeholder="IFSC Code" type="text" name="ifscCode"></div>
+            <div><input placeholder="Account Holder Name" type="text" name="accountHolderName"></div>
+            <div><input type="button" value="Submit" id="addAccount"></div>
+
+            <button id="getAccounts">Accounts</button>
+            <div id="accountsGrid"></div>
+        </div>
+
+        <div id="vehicles">
+            <div>
+                <input type="radio" name="vehicletype" value="sedan">Sedan
+                <input type="radio" name="vehicletype" value="suv">SUV
+            </div>
+            <div><input placeholder="RC Number" type="text" name="rcNumber"></div>
+            <div><input placeholder="Select file location" type="file" name="vehicleFitness"></div>
+            <div><input type="button" value="Submit" id="putvehicle"></div>
+
+            <button id="getVehicles">Vehicles</button>
+            <div id="vehiclesGrid"></div>
+        </div>
+
+        <div id="drivers">
+            <div><input placeholder="Name" type="text" name="driverName"></div>
+            <div><input placeholder="License number" type="text" name="licenseNumber"></div>
+            <div><input placeholder="Phone Number" type="number" name="phoneNumber"></div>
+            <div><input placeholder="Badge Number" type="text" name="badgeNumber"></div>
+            <div><input placeholder="Building name/D-No/ Appt name" type="text" name="houseName"></div>
+            <div><input placeholder="Street/Road/Mohalla" type="text" name="streetName"></div>
+            <div><input placeholder="Landmark" type="text" name="landmark"></div>
+            <div><input placeholder="Area/Locality" type="text" name="area"></div>
+            <div><input placeholder="Pincode" type="number" name="pincode"></div>
+            <div><input placeholder="Village/Town/City" type="text" name="village"></div>
+            <div><input placeholder="District" type="text" name="district"></div>
+            <div><input placeholder="State" type="text" name="state"></div>
+            <div><input placeholder="Country" type="text" name="country"></div>
+            <div><input type="button" value="Submit" id="insertDriver"></div>
+
+            <button id="getDrivers">Drivers</button>
+            <div id="driversGrid"></div>
+        </div>
     </section>
     <!--<footer class="main-footer">
         <div><strong><a href="https://github.com/techsnob" target="_blank"><i>Techsnob</i></a></strong></div>
