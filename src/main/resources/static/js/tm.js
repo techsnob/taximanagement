@@ -37,6 +37,9 @@ var GLOBAL_FUNCTIONS = {
         ajaxGet('drivers').success(function (response) {
             $("#driversGrid").jsGrid("option", "data", response);
         });
+    },
+    showreports: function () {
+
     }
 };
 
@@ -49,5 +52,6 @@ $(function () {
         GLOBAL_FUNCTIONS[func]();
     });
     initDrivers();
-    initAccounts()
+    initAccounts();
+    initTrip();
 });
