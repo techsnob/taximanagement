@@ -1,6 +1,7 @@
 package com.techsnob.entitiy;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 
 @Entity
@@ -30,10 +28,40 @@ public class Vehicle implements Serializable {
     private String vehicleType;
 
     @Column(name = "vehicle_rc_number", unique = true, nullable = false, length = 12)
-    private String vehicleRcNumber;
+    private String rcNumber;
 
-    @Column(name = "vehicle_fitness", unique = true, nullable = false, length = 12)
-    private String vehicleFitness;
+    @Column(name = "vehicle_fitness")
+    private Blob vehicleFitness;
 
+    public String getVehicleId() {
+        return vehicleId;
+    }
 
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
+    }
+
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
+    public String getRcNumber() {
+        return rcNumber;
+    }
+
+    public void setRcNumber(String rcNumber) {
+        this.rcNumber = rcNumber;
+    }
+
+    public Blob getVehicleFitness() {
+        return vehicleFitness;
+    }
+
+    public void setVehicleFitness(Blob vehicleFitness) {
+        this.vehicleFitness = vehicleFitness;
+    }
 }

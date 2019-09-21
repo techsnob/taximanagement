@@ -25,7 +25,7 @@ public class BankAccountController {
 		return objectMapper.writeValueAsString(bankAccountRepository.findById(accountId));
 	}
 	
-	@GetMapping("/getAllAccountDetails")
+	@GetMapping("/accounts")
 	public String getAllDriverDetails() throws JsonProcessingException {
 		return objectMapper.writeValueAsString(bankAccountRepository.findAll());
 	}

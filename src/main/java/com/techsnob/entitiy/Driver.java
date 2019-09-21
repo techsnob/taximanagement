@@ -35,7 +35,7 @@ public class Driver implements Serializable {
     @Column(name = "badge_number", unique = true, nullable = false, length = 30)
     private String badgeNumber;
 
-    @OneToOne(cascade= CascadeType.ALL,fetch= FetchType.LAZY)
+    @OneToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="address_id")
     private Address address;
 

@@ -12,23 +12,23 @@ import com.techsnob.entitiy.Vehicle;
 import com.techsnob.repository.VehicleRepository;
 
 @RestController
-public class TaxiController {
+public class VehicleController {
 	
 	private VehicleRepository vehicleRepository;
 
-	@GetMapping("/getTaxiDetails/{taxiId}")
-	public Optional<Vehicle> getTaxiDetails(@PathVariable String taxiId) {
-		return vehicleRepository.findById(taxiId);
+	@GetMapping("/getvehicle/{vehicleId}")
+	public Optional<Vehicle> getVehicleDetails(@PathVariable String vehicleId) {
+		return vehicleRepository.findById(vehicleId);
 	}
 	
 	@GetMapping("/vehicles")
-	public Iterable<Vehicle> getAllTaxiDetails() {
+	public Iterable<Vehicle> getVehicleDetails() {
 		return vehicleRepository.findAll();
 	}
 	
-	@PostMapping("/insertTaxiDetails")
-	public Vehicle insertTaxiDetails(@RequestBody Vehicle taxi) {
-		return vehicleRepository.save(taxi);
+	@PostMapping("/putvehicle")
+	public Vehicle putVehicle(@RequestBody Vehicle vehicle) {
+		return vehicleRepository.save(vehicle);
 	}
 	
 	
