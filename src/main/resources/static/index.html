@@ -12,27 +12,21 @@
     <link type="text/css" rel="stylesheet" href="css/tm.css"/>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <a class="navbar-brand" href="#">Taxi Management</a>
+</nav>
 <div class="container-fluid">
-    <header class="">
-        Taxi Management
-    </header>
     <div class="row">
-        <div class="col-sm-3 border border-right">
-                <ul>
-                    <li><a href="#" data="vehicles">Vehicles</a></li>
-                </ul>
-                <ul>
-                    <li><a href="#" data="drivers">Drivers</a></li>
-                </ul>
-                <ul>
-                    <li><a href="#" data="accounts">Accounts</a></li>
-                </ul>
-                <ul>
-                    <li><a href="#" data="reports">Reports</a></li>
-                </ul>
+        <div class="col-sm-3">
+            <ul class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action" data="vehicles">Vehicles</a>
+                <a href="#" class="list-group-item list-group-item-action" data="drivers">Drivers</a>
+                <a href="#" class="list-group-item list-group-item-action" data="accounts">Accounts</a>
+                <a href="#" class="list-group-item list-group-item-action" data="reports">Reports</a>
+            </ul>
         </div>
         <div class="col-sm-9">
-            <div class="mt-4">
+            <div class="">
                 <div id="accounts">
                     <div><h2>Accounts</h2></div>
                     <div id="accountsGrid"></div>
@@ -47,6 +41,7 @@
                 </div>
 
                 <div id="vehicles">
+                    <div><h2>Vehicles</h2></div>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" name="vehicletype" id="sedan" value="sedan" class="custom-control-input">
                         <label class="custom-control-label" for="sedan">Sedan</label>
@@ -63,6 +58,7 @@
                 </div>
 
                 <div id="drivers">
+                    <div><h2>Drivers</h2></div>
                     <div id="driversGrid"></div>
                     <div id="detailsDialog">
                         <form id="driver">
@@ -85,7 +81,7 @@
                 </div>
 
                 <div id="reports">
-                    Trip
+                    <div><h2>Trip</h2></div>
                     <table class="table">
                         <tbody>
                         <tr>
