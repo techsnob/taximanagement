@@ -52,7 +52,7 @@ function initDrivers() {
                 modeSwitchButton: false,
                 editButton: false,
                 headerTemplate: function () {
-                    return $("<button>").attr("type", "button").text("Add")
+                    return $("<button>").attr("type", "button").attr("class","btn btn-primary").text("Add")
                         .on("click", function () {
                             showDetailsDialog("Add");
                         });

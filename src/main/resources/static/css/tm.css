@@ -5,32 +5,6 @@ header {
     font-size: 35px;
 }
 
-aside {
-    width: 20%;
-    border-right: solid 2px;
-    height: 300px;
-    border-bottom: solid;
-    float: left;
-}
-
-section {
-    float: right;
-    width: 78%;
-    padding-top: 2%;
-}
-
-footer {
-    border-top: solid 1px;
-}
-
-ul {
-    margin: 2%;
-}
-
 input{
     margin: 1%
-}
-
-label{
-    margin-right: 3%;
 }

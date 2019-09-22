@@ -40,6 +40,9 @@ var GLOBAL_FUNCTIONS = {
     },
     showreports: function () {
 
+    },
+    showvehicles: function () {
+
     }
 };
 
