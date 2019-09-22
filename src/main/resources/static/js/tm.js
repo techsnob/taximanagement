@@ -4,14 +4,26 @@ function ajaxPost(url, data) {
         url: url,
         data: JSON.stringify(data),
         dataType: "json",
-        contentType: "application/json"
+        contentType: "application/json",
+        beforeSend: function () {
+            $("#content").modal('show');
+        },
+        complete: function () {
+            $("#content").modal('hide');
+        }
     });
 }
 
 function ajaxGet(url) {
     return $.ajax({
         type: "GET",
-        url: url
+        url: url,
+        beforeSend: function () {
+            $("#content").modal('show');
+        },
+        complete: function () {
+            $("#content").modal('hide');
+        }
     });
 }
 
@@ -21,12 +33,7 @@ function hideContent() {
     $("#drivers").hide();
     $("#reports").hide();
 }
-var GRID_OPTIONS={
-    width: "100%",
-    height: "400px",
-    heading: true,
-    sorting: true,
-};
+
 var GLOBAL_FUNCTIONS = {
     showaccounts: function () {
         ajaxGet('accounts').success(function (response) {
@@ -38,16 +45,16 @@ var GLOBAL_FUNCTIONS = {
         ajaxGet('drivers').success(function (response) {
             $("#driversGrid").jsGrid("option", "data", response);
         });
+        $("#driverDialog").load('pages/adddriver.html');
     },
     showreports: function () {
-
     },
     showvehicles: function () {
-
     }
 };
 
 $(function () {
+    $("#content").modal('show');
     hideContent();
     $("[data]").click(function () {
         hideContent();
@@ -58,4 +65,5 @@ $(function () {
     initDrivers();
     initAccounts();
     initTrip();
+    $("#content").modal('hide');
 });

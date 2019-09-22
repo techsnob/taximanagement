@@ -1,4 +1,5 @@
-function saveClient(json, isNew) {
+function saveDriver(isNew) {
+    var json = $("#driver").serializeJSON();
     var driver = {
         driverName: json.driverName,
         phoneNumber: json.phoneNumber,
@@ -24,15 +25,9 @@ function saveClient(json, isNew) {
     };
     $("#driversGrid").jsGrid(isNew ? "insertItem" : "updateItem", json.driver);
     ajaxPost('insertDriverDetails', container).success(function (response) {
-
         alert(response.driverName + " added sucessfully!");
     });
-    $("#detailsDialog").dialog("close");
-}
-
-function showDetailsDialog(dialogType) {
-    $("#detailsDialog").dialog("option", "title", "Driver")
-        .dialog("open");
+    $("#driverDialog").modal("hide");
 }
 
 function initDrivers() {
@@ -52,28 +47,14 @@ function initDrivers() {
                 modeSwitchButton: false,
                 editButton: false,
                 headerTemplate: function () {
-                    return $("<button>").attr("type", "button").attr("class","btn btn-primary").text("Add")
-                        .on("click", function () {
-                            showDetailsDialog("Add");
-                        });
+                    return $("<button>")
+                        .attr("type", "button")
+                        .attr("class", "btn btn-primary")
+                        .attr("data-toggle", "modal")
+                        .attr("data-target", "#driverDialog")
+                        .text("Add");
                 }
             }
         ]
     });
-
-    $("#detailsDialog").dialog({
-        autoOpen: false,
-        width: 400,
-        resizable: false,
-        height: "auto",
-        modal: true,
-        close: function () {
-            $("#detailsForm").find(".error").removeClass("error");
-        }
-    });
-
-    $("#insertDriver").click(function () {
-        saveClient($("#driver").serializeJSON(), true);
-    });
-
 }
