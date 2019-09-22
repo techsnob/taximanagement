@@ -32,6 +32,7 @@ var GLOBAL_FUNCTIONS = {
         ajaxGet('accounts').success(function (response) {
             $("#accountsGrid").jsGrid("option", "data", JSON.parse(response));
         });
+        $("#accountDialog").load('pages/addaccount.html');
     },
     showdrivers: function () {
         ajaxGet('drivers').success(function (response) {

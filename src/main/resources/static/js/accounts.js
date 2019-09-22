@@ -1,14 +1,10 @@
-function saveAccount(json, isNew) {
+function saveAccount(isNew) {
+    var json = $("#account").serializeJSON();
     $("#accountsGrid").jsGrid(isNew ? "insertItem" : "updateItem", json);
     ajaxPost('insertAccountDetails', json).success(function (response) {
         alert(response.accountHolderName + " added sucessfully!");
     });
-    $("#accountDialog").dialog("close");
-}
-
-function showAccountDialog(dialogType) {
-    $("#accountDialog").dialog("option", "title", "Account")
-        .dialog("open");
+    $("#accountDialog").modal("hide");
 }
 
 function initAccounts() {
@@ -26,28 +22,15 @@ function initAccounts() {
                 type: "control",
                 modeSwitchButton: false,
                 editButton: false,
-                headerTemplate: function() {
-                    return $("<button>").attr("type", "button").attr("class","btn btn-primary").text("Add")
-                        .on("click", function () {
-                            showAccountDialog("Add");
-                        });
+                headerTemplate: function () {
+                    return $("<button>")
+                        .attr("type", "button")
+                        .attr("class", "btn btn-primary")
+                        .attr("data-toggle", "modal")
+                        .attr("data-target", "#accountDialog")
+                        .text("Add");
                 }
             }
         ]
-    });
-
-    $("#addAccount").click(function () {
-        saveAccount($("#account").serializeJSON(), true);
-    });
-
-    $("#accountDialog").dialog({
-        autoOpen: false,
-        width: 400,
-        resizable: false,
-        height: "auto",
-        modal: true,
-        close: function() {
-            // $("#detailsForm").find(".error").removeClass("error");
-        }
     });
 }
