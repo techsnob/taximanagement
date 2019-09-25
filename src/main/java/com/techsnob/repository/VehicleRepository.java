@@ -5,7 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.techsnob.entitiy.Vehicle;
 
+import javax.transaction.Transactional;
+
 @Repository
+@Transactional
 public interface VehicleRepository extends CrudRepository<Vehicle, String> {
 
 }

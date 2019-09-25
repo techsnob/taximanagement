@@ -50,6 +50,10 @@ var GLOBAL_FUNCTIONS = {
     showreports: function () {
     },
     showvehicles: function () {
+        ajaxGet('vehicles').success(function (response) {
+            $("#vehiclesGrid").jsGrid("option", "data", response);
+        });
+        $("#vehicleDialog").load('pages/addvehicle.html');
     }
 };
 
@@ -65,5 +69,6 @@ $(function () {
     initDrivers();
     initAccounts();
     initTrip();
+    initVehicles();
     $("#content").modal('hide');
 });

@@ -1,0 +1,30 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h4 class="modal-title">Add Vehicle</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+            <form id="vehicle">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" name="vehicletype" id="sedan" value="sedan" class="custom-control-input">
+                    <label class="custom-control-label" for="sedan">Sedan</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" name="vehicletype" id="suv" value="suv" class="custom-control-input">
+                    <label class="custom-control-label" for="suv">SUV</label>
+                </div>
+                <div><input placeholder="RC Number" type="text" name="rcNumber"></div>
+                <div><input type="file" name="vehicleFitness" class="border"></div>
+                <div><input type="button" value="Submit" id="putvehicle" class="btn btn-primary"></div>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+    </div>
+</div>
