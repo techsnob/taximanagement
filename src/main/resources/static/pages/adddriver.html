@@ -3,24 +3,14 @@
 
         <div class="modal-header">
             <h4 class="modal-title">Add Driver</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
         <div class="modal-body">
             <form id="driver">
                 <div><input placeholder="Name" type="text" name="driverName"></div>
-                <div><input placeholder="License number" type="text" name="licenseNumber"></div>
                 <div><input placeholder="Phone Number" type="number" name="phoneNumber"></div>
-                <div><input placeholder="Badge Number" type="text" name="badgeNumber"></div>
-                <div><input placeholder="Building name/D-No/ Appt name" type="text" name="houseName"></div>
-                <div><input placeholder="Street/Road/Mohalla" type="text" name="streetName"></div>
-                <div><input placeholder="Landmark" type="text" name="landmark"></div>
-                <div><input placeholder="Area/Locality" type="text" name="area"></div>
-                <div><input placeholder="Pincode" type="number" name="pincode"></div>
-                <div><input placeholder="Village/Town/City" type="text" name="village"></div>
-                <div><input placeholder="District" type="text" name="district"></div>
-                <div><input placeholder="State" type="text" name="state"></div>
-                <div><input placeholder="Country" type="text" name="country"></div>
+                <div><input placeholder="Upload License" type="file" name="license"></div>
+                <div><input placeholder="License number" type="file" name="aadhaar"></div>
                 <div><input type="button" value="Submit" id="insertDriver" class="btn btn-primary" onclick="saveDriver(true);"></div>
             </form>
         </div>
