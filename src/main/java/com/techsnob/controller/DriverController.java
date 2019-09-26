@@ -17,27 +17,27 @@ import com.techsnob.repository.DriverRepository;
 
 @RestController
 public class DriverController {
-	
-	@Autowired
-	private DriverRepository driverRepository;
 
-	@Autowired
-	private AddressRepository addressRepository;
-	
-	@GetMapping("/getDriverDetails/{driverId}")
-	public Optional<Driver> getDriverDetails(@PathVariable Long driverId) {
-		return driverRepository.findById(driverId);
-	}
-	
-	@GetMapping("/drivers")
-	public Iterable<Driver> getAllDriverDetails() {
-		return driverRepository.findAll();
-	}
-	
-	@PostMapping(path="/insertDriverDetails", consumes= {"application/json"}, produces= {"application/json"})
-	public Driver insertDriverDetails(@RequestBody ContainerDto containerDto) {
-		containerDto.getDriver().setAddress(containerDto.getAddress());
-		return driverRepository.save(containerDto.getDriver());
-	}
+    //@Autowired
+    private DriverRepository driverRepository;
+
+    public DriverController(DriverRepository driverRepository){
+        this.driverRepository = driverRepository;
+    }
+
+    @GetMapping("/getDriverDetails/{driverId}")
+    public Optional<Driver> getDriverDetails(@PathVariable Long driverId) {
+        return driverRepository.findById(driverId);
+    }
+
+    @GetMapping("/drivers")
+    public Iterable<Driver> getAllDriverDetails() {
+        return driverRepository.findAll();
+    }
+
+    @PostMapping(path = "/insertDriverDetails", consumes = {"application/json"}, produces = {"application/json"})
+    public Driver insertDriverDetails(@RequestBody Driver driver) {
+        return driverRepository.save(driver);
+    }
 
 }
