@@ -1,3 +1,4 @@
+/*
 package com.techsnob.entitiy;
 
 import javax.persistence.Column;
@@ -124,3 +125,4 @@ public class Address implements Serializable {
         this.country = country;
     }
 }
+*/

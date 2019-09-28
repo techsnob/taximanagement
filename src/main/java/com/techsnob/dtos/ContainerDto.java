@@ -1,3 +1,4 @@
+/*
 package com.techsnob.dtos;
 
 import com.techsnob.entitiy.Address;
@@ -25,3 +26,4 @@ public class ContainerDto implements Serializable {
         this.address = address;
     }
 }
+*/

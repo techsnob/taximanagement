@@ -1,3 +1,4 @@
+/*
 package com.techsnob.repository;
 
 import com.techsnob.entitiy.Address;
@@ -10,3 +11,4 @@ import javax.transaction.Transactional;
 @Transactional
 public interface AddressRepository extends CrudRepository<Address, Long> {
 }
+*/
