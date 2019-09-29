@@ -1,22 +1,25 @@
 package com.techsnob.entitiy;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.sql.Clob;
+
+import org.hibernate.annotations.LazyGroup;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "drivers")
+@JsonIgnoreProperties({"license","aadhaar"})
 public class Driver implements Serializable {
 
     @Id
@@ -36,10 +39,13 @@ public class Driver implements Serializable {
 
     @Column(name = "license")
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] license;
 
     @Column(name = "aadhaar")
     @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @LazyGroup("aadhaar")
     private byte[] aadhaar;
 
     public Driver() {
