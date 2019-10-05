@@ -43,5 +43,10 @@ public class DriverController {
         Driver driver = new Driver(firstName, lastName, phoneNumber, aadhaar.getBytes(), license.getBytes());
         return driverRepository.save(driver);
     }
+    
+    @PostMapping(path = "/removedriver", consumes = "application/json", produces = {"application/json"})
+    public void removeDriver(@RequestBody Driver driver) {
+    	driverRepository.delete(driver);
+    }
 
 }
