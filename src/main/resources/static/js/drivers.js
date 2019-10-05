@@ -1,10 +1,18 @@
 function saveDriver(isNew) {
     $("#driversGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#driver").serializeJSON());
-
+    var postData;
+    if(isNew){
+    	url = "insertDriver";
+    	postData = new FormData($("#driver")[0]);
+    } else {
+    	url = "updateDriver";
+    	postData = new FormData($("#driver")[0]);
+    }
+    
     $.ajax({
         type: "POST",
-        url: "insertDriverDetails",
-        data: new FormData($("#driver")[0]),
+        url: url,
+        data: postData,
         dataType: "json",
         enctype: 'multipart/form-data',
         processData: false,
@@ -17,19 +25,22 @@ function saveDriver(isNew) {
             $("#content").modal('hide');
         }
     });
+    
     $("#driverDialog").modal("hide");
 }
 
 function openDriverModal(mode, item){
 	if(mode == 'Edit'){
+		$('input[name="driverId"]').val(item.driverId);
 		$('input[name="firstName"]').val(item.firstName);
 		$('input[name="lastName"]').val(item.lastName);
 		$('input[name="phoneNumber"]').val(item.phoneNumber);
 		$("#insertDriver").attr("onclick", "saveDriver(false);");
 		$("#driverDialog").find('.modal-title').text("Edit Driver");
 		$("#driverDialog").modal('show');
+	} else {
+		$("#insertDriver").attr("onclick", "saveDriver(true);");
 	}
-	$("#insertDriver").attr("onclick", "saveDriver(true);");
 	$("#driverDialog").modal('show');
 }
 

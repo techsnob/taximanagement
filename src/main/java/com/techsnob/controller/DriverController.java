@@ -34,7 +34,7 @@ public class DriverController {
         return driverRepository.findAll();
     }
 
-    @PostMapping(path = "/insertDriverDetails", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = {"application/json"})
+    @PostMapping(path = "/insertDriver", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = {"application/json"})
     public Driver insertDriverDetails(@RequestParam("firstName") String firstName,
                                       @RequestParam("lastName") String lastName,
                                       @RequestParam("phoneNumber") Long phoneNumber,
@@ -42,6 +42,22 @@ public class DriverController {
                                       @RequestParam("license") MultipartFile license) throws IOException {
         Driver driver = new Driver(firstName, lastName, phoneNumber, aadhaar.getBytes(), license.getBytes());
         return driverRepository.save(driver);
+    }
+    
+    @PostMapping(path = "/updateDriver", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = {"application/json"})
+    public void updateDriver(@RequestParam("driverId") String driverId, @RequestParam("firstName") String firstName,
+                                      @RequestParam("lastName") String lastName,
+                                      @RequestParam("phoneNumber") Long phoneNumber,
+                                      @RequestParam("aadhaar") MultipartFile aadhaar,
+                                      @RequestParam("license") MultipartFile license) throws IOException {
+    	Driver driver = driverRepository.findById(Long.valueOf(driverId)).get();
+    	driver.setDriverId(Long.valueOf(driverId));
+    	driver.setFirstName(firstName);
+    	driver.setLastName(lastName);
+    	driver.setPhoneNumber(phoneNumber);
+    	driver.setAadhaar(aadhaar.getBytes());
+    	driver.setLicense(license.getBytes());
+        driverRepository.save(driver);
     }
     
     @PostMapping(path = "/removedriver", consumes = "application/json", produces = {"application/json"})
