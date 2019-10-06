@@ -18,7 +18,7 @@ function openAccountModal(mode, item){
 		ajaxGet('vehicleRCNumbers').success(function(response){
 			$("#vehicleNumber").html("").append('<option value="-1" disabled selected>--Select--</option>');
 			$.each(response, function(i, val){
-				$("#vehicleNumber").append('<option value="'+val+'">'+val+'</option');
+				$("#vehicleNumber").append('<option value="'+val.vehicleId+'">'+val.rcNumber+'</option');
 			});
 		});
 		$("#addAccount").attr("onclick", "saveAccount(true);");

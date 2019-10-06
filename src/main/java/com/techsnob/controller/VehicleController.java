@@ -1,6 +1,8 @@
 package com.techsnob.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,8 @@ public class VehicleController {
 	}
 	
 	@GetMapping("/vehicleRCNumbers")
-	public Iterable<String> getvehicleRCNumbers() {
-		return vehicleRepository.getAllRcNumbers();
+	public List<Map<String, String>> getvehicleRCNumbers() {
+		return vehicleRepository.getRcNumbersWithIds();
 	}
 	
 	@PostMapping(path="/putvehicle", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = {"application/json"})
