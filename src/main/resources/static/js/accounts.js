@@ -15,6 +15,12 @@ function openAccountModal(mode, item){
 		$("#addAccount").attr("onclick", "saveAccount(false);");
 		$("#accountDialog").find('.modal-title').text("Edit Account");
 	} else {
+		ajaxGet('vehicleRCNumbers').success(function(response){
+			$("#vehicleNumber").html("").append('<option value="-1" disabled selected>--Select--</option>');
+			$.each(response, function(i, val){
+				$("#vehicleNumber").append('<option value="'+val+'">'+val+'</option');
+			});
+		});
 		$("#addAccount").attr("onclick", "saveAccount(true);");
 	}
 	$("#accountDialog").modal('show');

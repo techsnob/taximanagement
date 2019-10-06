@@ -26,7 +26,7 @@ public class Vehicle implements Serializable {
     @Column(name = "vehicle_type", nullable = false, length = 30)
     private String vehicleType;
 
-    @Column(name = "vehicle_rc_number", unique = true, nullable = false, length = 12)
+    @Column(name = "rcnumber", unique = true, nullable = false, length = 12)
     private String rcNumber;
 
     @Column(name = "rcFile")

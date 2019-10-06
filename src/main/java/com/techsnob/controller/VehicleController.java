@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.techsnob.entitiy.Driver;
 import com.techsnob.entitiy.Vehicle;
 import com.techsnob.repository.VehicleRepository;
 
@@ -31,6 +30,11 @@ public class VehicleController {
 	@GetMapping("/vehicles")
 	public Iterable<Vehicle> getVehicleDetails() {
 		return vehicleRepository.findAll();
+	}
+	
+	@GetMapping("/vehicleRCNumbers")
+	public Iterable<String> getvehicleRCNumbers() {
+		return vehicleRepository.getAllRcNumbers();
 	}
 	
 	@PostMapping(path="/putvehicle", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = {"application/json"})
