@@ -9,6 +9,5 @@ import com.techsnob.entitiy.BankAccount;
 
 @Repository
 @Transactional
-public interface BankAccountRepository extends CrudRepository<BankAccount, String> {
-
+public interface BankAccountRepository extends CrudRepository<BankAccount, Long> {
 }

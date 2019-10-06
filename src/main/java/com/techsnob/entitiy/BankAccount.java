@@ -40,6 +40,12 @@ public class BankAccount implements Serializable{
 	public Long getAccountNumber() {
 		return accountNumber;
 	}
+	public Long getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
 	public void setAccountNumber(Long accountNumber) {
 		this.accountNumber = accountNumber;
 	}

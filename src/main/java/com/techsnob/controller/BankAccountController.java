@@ -22,7 +22,7 @@ public class BankAccountController {
 	
 	@GetMapping("/getAccountDetail/{accountId}")
 	public String getDriverDetails(@PathVariable String accountId) throws JsonProcessingException {
-		return objectMapper.writeValueAsString(bankAccountRepository.findById(accountId));
+		return objectMapper.writeValueAsString(bankAccountRepository.findById(Long.valueOf(accountId)));
 	}
 	
 	@GetMapping("/accounts")
@@ -30,9 +30,16 @@ public class BankAccountController {
 		return objectMapper.writeValueAsString(bankAccountRepository.findAll());
 	}
 	
-	@PostMapping(path="/insertAccountDetails", consumes= {"application/json"}, produces= {"application/json"})
+	@PostMapping(path="/insertAccount", consumes= {"application/json"}, produces= {"application/json"})
 	public String insertDriverDetails(@RequestBody BankAccount bankAccount) throws JsonProcessingException {
 		return objectMapper.writeValueAsString(bankAccountRepository.save(bankAccount));
 	}
+	
+	@PostMapping(path = "/removeAccount", consumes = "application/json", produces = {"application/json"})
+    public void removeAccount(@RequestBody String accountId) {
+		if(!accountId.isEmpty()) {
+			bankAccountRepository.deleteById(Long.valueOf(accountId));
+		}
+    }
 
 }
