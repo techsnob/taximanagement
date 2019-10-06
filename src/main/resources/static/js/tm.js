@@ -27,6 +27,25 @@ function ajaxGet(url) {
     });
 }
 
+function ajaxPostFileData(url, postData){
+	return $.ajax({
+        type: "POST",
+        url: url,
+        data: postData,
+        dataType: "json",
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+        cache: false,
+        beforeSend: function () {
+            $("#content").modal('show');
+        },
+        complete: function () {
+            $("#content").modal('hide');
+        }
+    });
+}
+
 function hideContent() {
     $("#accounts").hide();
     $("#vehicles").hide();

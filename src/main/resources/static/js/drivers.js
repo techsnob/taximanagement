@@ -9,22 +9,7 @@ function saveDriver(isNew) {
     	postData = new FormData($("#driver")[0]);
     }
     
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: postData,
-        dataType: "json",
-        enctype: 'multipart/form-data',
-        processData: false,
-        contentType: false,
-        cache: false,
-        beforeSend: function () {
-            $("#content").modal('show');
-        },
-        complete: function () {
-            $("#content").modal('hide');
-        }
-    });
+    ajaxPostFileData(url,postData);
     
     $("#driverDialog").modal("hide");
 }
