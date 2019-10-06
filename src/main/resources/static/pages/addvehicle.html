@@ -7,17 +7,21 @@
 
         <div class="modal-body">
             <form id="vehicle">
+                <div><input type="text" name="vehicleId" hidden="hidden"></div>
+                <div><input placeholder="RC Number" type="text" name="rcNumber"></div>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" name="vehicletype" id="sedan" value="sedan" class="custom-control-input">
+                    <input type="radio" name="vehicleType" id="sedan" value="sedan" class="custom-control-input">
                     <label class="custom-control-label" for="sedan">Sedan</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" name="vehicletype" id="suv" value="suv" class="custom-control-input">
+                    <input type="radio" name="vehicleType" id="suv" value="suv" class="custom-control-input">
                     <label class="custom-control-label" for="suv">SUV</label>
                 </div>
-                <div><input placeholder="RC Number" type="text" name="rcNumber"></div>
-                <div><input type="file" name="vehicleFitness" class="border"></div>
-                <div><input type="button" value="Submit" id="putvehicle" class="btn btn-primary"></div>
+                <div><input type="file" name="rcFile" class="border"></div>
+                <div><input type="file" name="fitness" class="border"></div>
+                <div><input type="file" name="insurance" class="border"></div>
+                <div><input type="file" name="taxsheet" class="border"></div>
+                <div><input type="button" value="Submit" id="insertvehicle" class="btn btn-primary"></div>
             </form>
         </div>
 

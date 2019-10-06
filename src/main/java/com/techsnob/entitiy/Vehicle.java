@@ -1,7 +1,6 @@
 package com.techsnob.entitiy;
 
 import java.io.Serializable;
-import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +21,7 @@ public class Vehicle implements Serializable {
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="vehicle_seq")
     @SequenceGenerator(name = "vehicle_seq", sequenceName="vehicle_seq", allocationSize=1, initialValue = 1000)
     @Column(name = "vehicle_id")
-    private String vehicleId;
+    private Long vehicleId;
 
     @Column(name = "vehicle_type", nullable = false, length = 30)
     private String vehicleType;
@@ -30,14 +29,36 @@ public class Vehicle implements Serializable {
     @Column(name = "vehicle_rc_number", unique = true, nullable = false, length = 12)
     private String rcNumber;
 
-    @Column(name = "vehicle_fitness")
-    private Blob vehicleFitness;
+    @Column(name = "rcFile")
+    private byte[] rcFile;
+    
+    @Column(name = "fitness")
+    private byte[] fitness;
+    
+    @Column(name = "insurance")
+    private byte[] insurance;
+    
+    @Column(name = "taxsheet")
+    private byte[] taxsheet;
+    
+    public Vehicle() {
+    }
 
-    public String getVehicleId() {
+    public Vehicle(String vehicleType, String rcNumber, byte[] rcFile, byte[] fitness, byte[] insurance,
+			byte[] taxsheet) {
+		this.vehicleType = vehicleType;
+		this.rcNumber = rcNumber;
+		this.rcFile = rcFile;
+		this.fitness = fitness;
+		this.insurance = insurance;
+		this.taxsheet = taxsheet;
+	}
+
+	public Long getVehicleId() {
         return vehicleId;
     }
 
-    public void setVehicleId(String vehicleId) {
+    public void setVehicleId(Long vehicleId) {
         this.vehicleId = vehicleId;
     }
 
@@ -57,11 +78,38 @@ public class Vehicle implements Serializable {
         this.rcNumber = rcNumber;
     }
 
-    public Blob getVehicleFitness() {
-        return vehicleFitness;
-    }
+	public byte[] getFitness() {
+		return fitness;
+	}
 
-    public void setVehicleFitness(Blob vehicleFitness) {
-        this.vehicleFitness = vehicleFitness;
-    }
+	public void setFitness(byte[] fitness) {
+		this.fitness = fitness;
+	}
+
+	public byte[] getInsurance() {
+		return insurance;
+	}
+
+	public void setInsurance(byte[] insurance) {
+		this.insurance = insurance;
+	}
+
+	public byte[] getTaxsheet() {
+		return taxsheet;
+	}
+
+	public void setTaxsheet(byte[] taxsheet) {
+		this.taxsheet = taxsheet;
+	}
+
+	public byte[] getRcFile() {
+		return rcFile;
+	}
+
+	public void setRcFile(byte[] rcFile) {
+		this.rcFile = rcFile;
+	}
+	
+	
+
 }
