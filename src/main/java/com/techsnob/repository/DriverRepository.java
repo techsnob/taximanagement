@@ -10,5 +10,4 @@ import com.techsnob.entitiy.Driver;
 @Repository
 @Transactional
 public interface DriverRepository extends CrudRepository<Driver, Long> {
-
 }
