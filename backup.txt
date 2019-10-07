@@ -1,0 +1,40 @@
+<img src="data:image/png;base64,iVBORw0KGgoAAA
+ANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
+//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU
+5ErkJggg==" alt="Red dot" />
+
+'<img src="data:image/jpeg;base64,'. base64_encode($image) .'" />'; -- php sample
+
+Then it's with help of jQuery Form plugin just a matter of
+<script src="jquery.js"></script>
+<script src="jquery.form.js"></script>
+<script>
+    $(function() {
+        $('#upload-form').ajaxForm({
+            success: function(msg) {
+                alert("File has been uploaded successfully");
+            },
+            error: function(msg) {
+                $("#upload-error").text("Couldn't upload file");
+            }
+        });
+    });
+</script>
+
+response.setHeader("Cache-Control","no-cache");
+                                      response.setHeader("Cache-Control","no-store");
+                                      response.setDateHeader("Expires", 0);
+                                      response.setHeader("Pragma","no-cache");
+
+https://www.baeldung.com/spring-mvc-image-media-data
+
+<img id="blah" alt="your image" width="100" height="100" />
+<input type="file" 
+    onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"> --one liner solution
+    
+https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+https://codepen.io/waqasy/pen/rkuJf
+
+https://stackoverflow.com/questions/14069421/show-an-image-preview-before-upload -- multiple files at a time
+
+https://www.html5rocks.com/en/tutorials/file/dndfiles/ -- Reading files in JavaScript using the File APIs

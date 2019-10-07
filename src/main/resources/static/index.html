@@ -102,9 +102,16 @@
             </div>
         </div>
     </div>
-
     <div class="navbar bg-light fixed-bottom navbar-lightx">
         <a class="navbar-brand" href="https://github.com/techsnob" target="_blank">Techsnob</a>
+        <div>
+        <form id="test" action="media" enctype="application/x-www-form-urlencoded" method="post">
+        <input type="text" name="filename" value="aadhaar">
+        <input type="text" name="module" value="DRIVERS">
+        <input type="submit" value="Click">
+        <!-- <a href="#" onclick="loadMediaContent();">Click!</a> -->
+        </form>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
@@ -116,5 +123,13 @@
 <script type="text/javascript" src="js/trip.js"></script>
 <script type="text/javascript" src="js/vehicles.js"></script>
 <script type="text/javascript" src="js/tm.js"></script>
+<script type="text/javascript">
+function loadMediaContent(){
+	var data = {"filename": "aadhaar", "module": "DRIVERS"};
+	ajaxPost('media',data).success(function(response){
+		console.log(response);
+	});
+}
+</script>
 </body>
 </html>
