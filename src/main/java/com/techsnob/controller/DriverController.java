@@ -40,7 +40,7 @@ public class DriverController {
                                       @RequestParam("phoneNumber") Long phoneNumber,
                                       @RequestParam("aadhaar") MultipartFile aadhaar,
                                       @RequestParam("license") MultipartFile license) throws IOException {
-        Driver driver = new Driver(firstName, lastName, phoneNumber, aadhaar.getBytes(), license.getBytes());
+        Driver driver = new Driver(firstName, lastName, phoneNumber, aadhaar.getBytes(), aadhaar.getContentType(), license.getBytes(),  license.getContentType());
         return driverRepository.save(driver);
     }
     
@@ -57,6 +57,8 @@ public class DriverController {
     	driver.setPhoneNumber(phoneNumber);
     	driver.setAadhaar(aadhaar.getBytes());
     	driver.setLicense(license.getBytes());
+    	driver.setAadhaar_contenttype(aadhaar.getContentType());
+    	driver.setLicense_contenttype(license.getContentType());
         driverRepository.save(driver);
     }
     

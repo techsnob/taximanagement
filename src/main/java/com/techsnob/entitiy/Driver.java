@@ -41,26 +41,47 @@ public class Driver implements Serializable {
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] license;
-
+    
+    @Column(name = "license_contenttype", nullable = false, length = 30)
+    private String license_contenttype;
+    
     @Column(name = "aadhaar")
     @Lob
     @Basic(fetch = FetchType.LAZY)
     @LazyGroup("aadhaar")
     private byte[] aadhaar;
+    
+    @Column(name = "aadhaar_contenttype", nullable = false, length = 30)
+    private String aadhaar_contenttype;
+    
+    public Driver(String firstName, String lastName, Long phoneNumber, byte[] license,
+			String license_contenttype, byte[] aadhaar, String aadhaar_contenttype) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.license = license;
+		this.license_contenttype = license_contenttype;
+		this.aadhaar = aadhaar;
+		this.aadhaar_contenttype = aadhaar_contenttype;
+	}
 
-    public Driver() {
+	public String getLicense_contenttype() {
+		return license_contenttype;
+	}
 
-    }
+	public void setLicense_contenttype(String license_contenttype) {
+		this.license_contenttype = license_contenttype;
+	}
 
-    public Driver(String firstName, String lastName, Long phoneNumber, byte[] license, byte[] aadhaar) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.license = license;
-        this.aadhaar = aadhaar;
-    }
+	public String getAadhaar_contenttype() {
+		return aadhaar_contenttype;
+	}
 
-    public Long getDriverId() {
+	public void setAadhaar_contenttype(String aadhaar_contenttype) {
+		this.aadhaar_contenttype = aadhaar_contenttype;
+	}
+
+	public Long getDriverId() {
         return driverId;
     }
 

@@ -76,6 +76,13 @@ var GLOBAL_FUNCTIONS = {
     }
 };
 
+function loadMediaContent(){
+	var data = $("#test").serializeJSON();
+	ajaxPost('media',data).success(function(response){
+		console.log(response);
+	});
+}
+
 $(function () {
     $("#content").modal('show');
     hideContent();
