@@ -53,25 +53,19 @@ function initDrivers() {
             {name: "aadhaar_contenttype", type: "text", visible: false},
             { title: "Aadhaar", itemTemplate: function(_, item) {
                     return $("<a>")
+                    	.attr("href", 'media?fileName=aadhaar&moduleName=drivers&contentType='+item.aadhaar_contenttype+'&columnId='+item.driverId)
                     	.attr("target", "_blank")
-                    	//.attr("href", "_blank")
-                    	.text("Link")
-                    	//.attr("data-toggle", "modal")
-                        //.attr("data-target", "#commonDialog")
-                    	.on("click", function() {
-                    		var data = {
-                    				contentType: item.aadhaar_contenttype,
-                    				fileName: "AADHAAR",
-                    				moduleName: "DRIVERS",
-                    				columnId: item.driverId
-                    		};
-                    		ajaxPost('media',data)
-                    		//$("#commonDialogContent").html(ajaxPost('media',data));
-                    		//item.aadhaar_contenttype
-                    	});
+                    	.text("Link");
               	}
             },
             {name: "license_contenttype", type: "text", visible: false},
+            { title: "License", itemTemplate: function(_, item) {
+                return $("<a>")
+                	.attr("href", 'media?fileName=license&moduleName=drivers&contentType='+item.license_contenttype+'&columnId='+item.driverId)
+                	.attr("target", "_blank")
+                	.text("Link");
+	          	}
+	        },
             {
                 type: "control",
                 modeSwitchButton: false,

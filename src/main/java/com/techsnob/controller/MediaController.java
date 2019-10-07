@@ -6,11 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.techsnob.entitiy.MediaFile;
 
 @RestController
 public class MediaController {
@@ -18,11 +16,14 @@ public class MediaController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	@PostMapping(path = "/media", consumes = "application/json", produces="application/json")
-	public ResponseEntity<byte[]> getImageAsResponseEntity(@RequestBody MediaFile mediaFile) {
+	@GetMapping(path = "/media")
+	public ResponseEntity<byte[]> getImageAsResponseEntity(@RequestParam("fileName") String fileName,
+			@RequestParam("moduleName") String moduleName,
+			@RequestParam("contentType") String contentType,
+			@RequestParam("columnId") String columnId) {
 	    HttpHeaders headers = new HttpHeaders();
-	    headers.setContentType(MediaType.valueOf(mediaFile.getContentType()));
-	    byte[] media = jdbcTemplate.queryForObject("SELECT "+mediaFile.getFileName()+" FROM "+mediaFile.getModuleName()+" WHERE ?", new Object[] {Long.valueOf(mediaFile.getColumnId())}, byte[].class);
+	    headers.setContentType(MediaType.valueOf(contentType));
+	    byte[] media = jdbcTemplate.queryForObject("SELECT "+fileName+" FROM "+moduleName+" WHERE ?", new Object[] {Long.valueOf(columnId)}, byte[].class);
 	    ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 	    return responseEntity;
 	}

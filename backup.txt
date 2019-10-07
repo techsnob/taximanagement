@@ -38,3 +38,17 @@ https://codepen.io/waqasy/pen/rkuJf
 https://stackoverflow.com/questions/14069421/show-an-image-preview-before-upload -- multiple files at a time
 
 https://www.html5rocks.com/en/tutorials/file/dndfiles/ -- Reading files in JavaScript using the File APIs
+
+//.attr("data-toggle", "modal")
+                        //.attr("data-target", "#commonDialog")
+                    	/*.on("click", function() {
+                    		var data = {
+                    				contentType: item.aadhaar_contenttype,
+                    				fileName: "AADHAAR",
+                    				moduleName: "DRIVERS",
+                    				columnId: item.driverId
+                    		};
+                    		ajaxPost('media',data)
+                    		//$("#commonDialogContent").html(ajaxPost('media',data));
+                    		//item.aadhaar_contenttype
+                    	});*/
