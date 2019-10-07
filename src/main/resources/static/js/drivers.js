@@ -42,7 +42,7 @@ function initDrivers() {
             }
             return "The driver "+item.firstName+" has been removed!";
         },
-        rowClick: function(args) {
+        rowDoubleClick: function(args) {
         	openDriverModal('Edit', args.item);
         },
         fields: [
@@ -50,6 +50,28 @@ function initDrivers() {
             {title: "First Name", name: "firstName", type: "text", width: 50},
             {title: "Last Name", name: "lastName", type: "text", width: 50},
             {title: "Phone Number", name: "phoneNumber", type: "text", width: 50},
+            {name: "aadhaar_contenttype", type: "text", visible: false},
+            { title: "Aadhaar", itemTemplate: function(_, item) {
+                    return $("<a>")
+                    	.attr("target", "_blank")
+                    	//.attr("href", "_blank")
+                    	.text("Link")
+                    	//.attr("data-toggle", "modal")
+                        //.attr("data-target", "#commonDialog")
+                    	.on("click", function() {
+                    		var data = {
+                    				contentType: item.aadhaar_contenttype,
+                    				fileName: "AADHAAR",
+                    				moduleName: "DRIVERS",
+                    				columnId: item.driverId
+                    		};
+                    		ajaxPost('media',data)
+                    		//$("#commonDialogContent").html(ajaxPost('media',data));
+                    		//item.aadhaar_contenttype
+                    	});
+              	}
+            },
+            {name: "license_contenttype", type: "text", visible: false},
             {
                 type: "control",
                 modeSwitchButton: false,

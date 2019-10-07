@@ -18,7 +18,7 @@ public class MediaController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	@PostMapping(path = "/media", consumes = "application/json")
+	@PostMapping(path = "/media", consumes = "application/json", produces="application/json")
 	public ResponseEntity<byte[]> getImageAsResponseEntity(@RequestBody MediaFile mediaFile) {
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.valueOf(mediaFile.getContentType()));
