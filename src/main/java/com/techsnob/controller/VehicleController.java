@@ -46,7 +46,7 @@ public class VehicleController {
             @RequestParam("fitness") MultipartFile fitness,
             @RequestParam("insurance") MultipartFile insurance,
             @RequestParam("taxsheet") MultipartFile taxsheet) throws IOException {
-		Vehicle vehicle = new Vehicle(vehicleType, rcNumber, rcFile.getBytes(), fitness.getBytes(), insurance.getBytes(), taxsheet.getBytes() );
+		Vehicle vehicle = new Vehicle(vehicleType, rcNumber, rcFile.getBytes(), rcFile.getContentType(), fitness.getBytes(), fitness.getContentType(), insurance.getBytes(), insurance.getContentType(), taxsheet.getBytes(), taxsheet.getContentType());
 		if(!vehicleId.isEmpty()) {
 			vehicle = vehicleRepository.findById(Long.valueOf(vehicleId)).get();
 			vehicle.setVehicleId(Long.valueOf(vehicleId));

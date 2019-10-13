@@ -31,30 +31,45 @@ public class Vehicle implements Serializable {
 
     @Column(name = "rcFile")
     private byte[] rcFile;
+
+    @Column(name = "rcFile_type", nullable = false, length = 30)
+    private String rcFileType;
     
     @Column(name = "fitness")
     private byte[] fitness;
+
+    @Column(name = "fitness_type", nullable = false, length = 30)
+    private String fitnessType;
     
     @Column(name = "insurance")
     private byte[] insurance;
+
+    @Column(name = "insurance_type", nullable = false, length = 30)
+    private String insuranceType;
     
     @Column(name = "taxsheet")
     private byte[] taxsheet;
+
+    @Column(name = "taxsheet_type", nullable = false, length = 30)
+    private String taxsheetType;
     
     public Vehicle() {
     }
 
-    public Vehicle(String vehicleType, String rcNumber, byte[] rcFile, byte[] fitness, byte[] insurance,
-			byte[] taxsheet) {
-		this.vehicleType = vehicleType;
-		this.rcNumber = rcNumber;
-		this.rcFile = rcFile;
-		this.fitness = fitness;
-		this.insurance = insurance;
-		this.taxsheet = taxsheet;
-	}
+    public Vehicle(String vehicleType, String rcNumber, byte[] rcFile, String rcFileType, byte[] fitness, String fitnessType, byte[] insurance, String insuranceType, byte[] taxsheet, String taxsheetType) {
+        this.vehicleType = vehicleType;
+        this.rcNumber = rcNumber;
+        this.rcFile = rcFile;
+        this.rcFileType = rcFileType;
+        this.fitness = fitness;
+        this.fitnessType = fitnessType;
+        this.insurance = insurance;
+        this.insuranceType = insuranceType;
+        this.taxsheet = taxsheet;
+        this.taxsheetType = taxsheetType;
+    }
 
-	public Long getVehicleId() {
+    public Long getVehicleId() {
         return vehicleId;
     }
 
@@ -109,7 +124,36 @@ public class Vehicle implements Serializable {
 	public void setRcFile(byte[] rcFile) {
 		this.rcFile = rcFile;
 	}
-	
-	
 
+    public String getRcFileType() {
+        return rcFileType;
+    }
+
+    public void setRcFileType(String rcFileType) {
+        this.rcFileType = rcFileType;
+    }
+
+    public String getFitnessType() {
+        return fitnessType;
+    }
+
+    public void setFitnessType(String fitnessType) {
+        this.fitnessType = fitnessType;
+    }
+
+    public String getInsuranceType() {
+        return insuranceType;
+    }
+
+    public void setInsuranceType(String insuranceType) {
+        this.insuranceType = insuranceType;
+    }
+
+    public String getTaxsheetType() {
+        return taxsheetType;
+    }
+
+    public void setTaxsheetType(String taxsheetType) {
+        this.taxsheetType = taxsheetType;
+    }
 }

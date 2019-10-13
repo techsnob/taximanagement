@@ -32,13 +32,41 @@ function initVehicles() {
             }
             return "The vehicle "+item.rcNumber+" has been removed!";
         },
-        rowClick: function(args) {
+        rowDoubleClick: function(args) {
         	openVehicleModal('Edit', args.item);
         },
         fields: [
         	{name: "vehicleId", type: "text", visible:false},
-        	{title: "Vehicle RC No", name: "rcNumber", type: "text", width: 50},
-        	{title: "Vehicle Type", name: "vehicleType", type: "text", width: 50},
+            {title: "Vehicle RC No", name: "rcNumber", type: "text", width: 50},
+            {title: "Vehicle Type", name: "vehicleType", type: "text", width: 50},
+            {name: "rcFileType", type: "text", visible: false},
+            {title: "RC File", itemTemplate: function(_, item) {
+                    return $("<a>")
+                        .attr("href", 'media?fileName=rc_file&moduleName=vehicles&contentType='+item.rcFileType+'&columnId='+item.vehicleId)
+                        .attr("target", "_blank")
+                        .text("Link");
+            }},
+            {name: "fitnessType", type: "text", visible: false},
+            {title: "Fitness", itemTemplate: function(_, item) {
+                    return $("<a>")
+                        .attr("href", 'media?fileName=fitness&moduleName=vehicles&contentType='+item.fitnessType+'&columnId='+item.vehicleId)
+                        .attr("target", "_blank")
+                        .text("Link");
+                }},
+            {name: "insuranceType", type: "text", visible: false},
+            {title: "Insurance", itemTemplate: function(_, item) {
+                    return $("<a>")
+                        .attr("href", 'media?fileName=insurance&moduleName=vehicles&contentType='+item.insuranceType+'&columnId='+item.vehicleId)
+                        .attr("target", "_blank")
+                        .text("Link");
+                }},
+            {name: "taxsheetType", type: "text", visible: false},
+            {title: "Tax Sheet", itemTemplate: function(_, item) {
+                    return $("<a>")
+                        .attr("href", 'media?fileName=taxsheet&moduleName=vehicles&contentType='+item.taxsheetType+'&columnId='+item.vehicleId)
+                        .attr("target", "_blank")
+                        .text("Link");
+                }},
             {
                 type: "control",
                 modeSwitchButton: false,
@@ -47,8 +75,6 @@ function initVehicles() {
                     return $("<button>")
                         .attr("type", "button")
                         .attr("class", "btn btn-primary")
-                        //.attr("data-toggle", "modal")
-                        //.attr("data-target", "#vehicleDialog")
                         .attr("onclick","openVehicleModal();")
                         .text("Add");
                 }

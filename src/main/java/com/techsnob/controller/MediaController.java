@@ -23,7 +23,13 @@ public class MediaController {
 			@RequestParam("columnId") String columnId) {
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.valueOf(contentType));
-	    byte[] media = jdbcTemplate.queryForObject("SELECT "+fileName+" FROM "+moduleName+" WHERE ?", new Object[] {Long.valueOf(columnId)}, byte[].class);
+	    String primaryKeyColumnname = null;
+	    if(moduleName.equals("drivers")){
+			primaryKeyColumnname = "driver_id";
+		} else if (moduleName.equals("vehicles")){
+			primaryKeyColumnname = "vehicle_id";
+		}
+	    byte[] media = jdbcTemplate.queryForObject("SELECT "+fileName+" FROM "+moduleName+" WHERE "+primaryKeyColumnname+"=?", new Object[] {Long.valueOf(columnId)}, byte[].class);
 	    ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
 	    return responseEntity;
 	}
