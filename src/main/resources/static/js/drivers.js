@@ -8,11 +8,8 @@ function saveDriver(isNew) {
     	url = "updateDriver";
     	postData = new FormData($("#driver")[0]);
     }
-    
     ajaxPostFileData(url,postData);
-    
     $("#driverDialog").modal("hide");
-    $("#driversLink").trigger('click');
 }
 
 function openDriverModal(mode, item){
@@ -48,9 +45,9 @@ function initDrivers() {
         },
         fields: [
             {name: "driverId", type: "text", visible: false},
-            {title: "First Name", name: "firstName", type: "text", width: 50},
-            {title: "Last Name", name: "lastName", type: "text", width: 50},
-            {title: "Phone Number", name: "phoneNumber", type: "text", width: 50},
+            {title: "First Name", name: "firstName", type: "text"},
+            {title: "Last Name", name: "lastName", type: "text"},
+            {title: "Phone Number", name: "phoneNumber", type: "text"},
             {name: "aadhaar_contenttype", type: "text", visible: false},
             { title: "Aadhaar", itemTemplate: function(_, item) {
                     return $("<a>")

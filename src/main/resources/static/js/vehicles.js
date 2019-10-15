@@ -2,7 +2,6 @@ function saveVehicle(isNew) {
     //$("#vehiclesGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#vehicle").serializeJSON());
     ajaxPostFileData("putvehicle",new FormData($("#vehicle")[0]));
     $("#vehicleDialog").modal("hide");
-    $("#vehiclesLink").trigger('click');
 }
 
 function openVehicleModal(mode, item){
@@ -38,8 +37,8 @@ function initVehicles() {
         },
         fields: [
         	{name: "vehicleId", type: "text", visible:false},
-            {title: "Vehicle RC No", name: "rcNumber", type: "text", width: 50},
-            {title: "Vehicle Type", name: "vehicleType", type: "text", width: 50},
+            {title: "Vehicle RC No", name: "rcNumber", type: "text"},
+            {title: "Vehicle Type", name: "vehicleType", type: "text"},
             {name: "rcFileType", type: "text", visible: false},
             {title: "RC File", itemTemplate: function(_, item) {
                     return $("<a>")

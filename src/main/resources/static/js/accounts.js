@@ -4,7 +4,6 @@ function saveAccount(isNew) {
         alert(response.accountHolderName + " added sucessfully!");
     });
     $("#accountDialog").modal("hide");
-    $("#accountsLink").trigger('click');
 }
 
 function openAccountModal(mode, item){
@@ -45,9 +44,9 @@ function initAccounts() {
         },
         fields: [
         	{name: "accountId", type: "text", visible: false},
-        	{title: "Account holder name", name: "accountHolderName", type: "text", width: 50},
-            {title: "Account Number", name: "accountNumber", type: "text", width: 50},
-            {title: "IFSC code", name: "ifscCode", type: "text", width: 50},
+        	{title: "Account holder name", name: "accountHolderName", type: "text"},
+            {title: "Account Number", name: "accountNumber", type: "text"},
+            {title: "IFSC code", name: "ifscCode", type: "text"},
             {
                 type: "control",
                 modeSwitchButton: false,
