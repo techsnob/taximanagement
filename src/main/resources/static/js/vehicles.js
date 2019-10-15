@@ -1,7 +1,8 @@
 function saveVehicle(isNew) {
-    $("#vehiclesGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#vehicle").serializeJSON());
+    //$("#vehiclesGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#vehicle").serializeJSON());
     ajaxPostFileData("putvehicle",new FormData($("#vehicle")[0]));
     $("#vehicleDialog").modal("hide");
+    $("#vehiclesLink").trigger('click');
 }
 
 function openVehicleModal(mode, item){

@@ -1,9 +1,10 @@
 function saveAccount(isNew) {
-    $("#accountsGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#account").serializeJSON());
+    //$("#accountsGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#account").serializeJSON());
     ajaxPost('insertAccount', $("#account").serializeJSON()).success(function (response) {
         alert(response.accountHolderName + " added sucessfully!");
     });
     $("#accountDialog").modal("hide");
+    $("#accountsLink").trigger('click');
 }
 
 function openAccountModal(mode, item){

@@ -1,5 +1,5 @@
 function saveDriver(isNew) {
-    $("#driversGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#driver").serializeJSON());
+    //$("#driversGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#driver").serializeJSON());
     var postData;
     if(isNew){
     	url = "insertDriver";
@@ -12,6 +12,7 @@ function saveDriver(isNew) {
     ajaxPostFileData(url,postData);
     
     $("#driverDialog").modal("hide");
+    $("#driversLink").trigger('click');
 }
 
 function openDriverModal(mode, item){
