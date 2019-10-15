@@ -12,13 +12,14 @@ function openAccountModal(mode, item){
 		$('input[name="accountHolderName"]').val(item.accountHolderName);
 		$('input[name="accountNumber"]').val(item.accountNumber);
 		$('input[name="ifscCode"]').val(item.ifscCode);
+        $('#vehicleNumber').val(item.vehicleNumber);
 		$("#addAccount").attr("onclick", "saveAccount(false);");
 		$("#accountDialog").find('.modal-title').text("Edit Account");
 	} else {
 		ajaxGet('vehicleRCNumbers').success(function(response){
 			$("#vehicleNumber").html("").append('<option value="-1" disabled selected>--Select--</option>');
 			$.each(response, function(i, val){
-				$("#vehicleNumber").append('<option value="'+val.vehicleId+'">'+val.rcNumber+'</option');
+				$("#vehicleNumber").append('<option value="'+val.rcNumber+'">'+val.rcNumber+'</option');
 			});
 		});
 		$("#addAccount").attr("onclick", "saveAccount(true);");
@@ -47,6 +48,7 @@ function initAccounts() {
         	{title: "Account holder name", name: "accountHolderName", type: "text"},
             {title: "Account Number", name: "accountNumber", type: "text"},
             {title: "IFSC code", name: "ifscCode", type: "text"},
+            {title: "Vehicle Number", name: "vehicleNumber", type: "text"},
             {
                 type: "control",
                 modeSwitchButton: false,

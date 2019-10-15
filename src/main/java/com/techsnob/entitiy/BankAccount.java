@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -34,8 +35,12 @@ public class BankAccount implements Serializable{
 	private String accountHolderName;
 
 	/*@OneToOne(cascade= CascadeType.ALL,fetch= FetchType.LAZY)
-	@JoinColumn(name="driver_id")
-	private Driver driver;*/
+	@MapsId("vehicle_id")
+	@JoinColumn(name="vehicle_number", referencedColumnName="rcNumber")
+	private Vehicle vehicleNumber;*/
+
+	@Column(length=12, name="vehicle_number", nullable=false)
+	private String vehicleNumber;
 	
 	public Long getAccountNumber() {
 		return accountNumber;
@@ -62,4 +67,11 @@ public class BankAccount implements Serializable{
 		this.accountHolderName = accountHolderName;
 	}
 
+	public String getVehicleNumber() {
+		return vehicleNumber;
+	}
+
+	public void setVehicleNumber(String vehicleNumber) {
+		this.vehicleNumber = vehicleNumber;
+	}
 }
