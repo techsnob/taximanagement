@@ -52,3 +52,9 @@ https://www.html5rocks.com/en/tutorials/file/dndfiles/ -- Reading files in JavaS
                     		//$("#commonDialogContent").html(ajaxPost('media',data));
                     		//item.aadhaar_contenttype
                     	});*/
+                    	
+                    	References from github:
+                    	https://github.com/wujekScho/HomeBudget
+                    	https://github.com/tscript3r/photogram
+                    	https://github.com/callicoder/spring-security-react-ant-design-polls-app
+                    	https://www.javaguides.net/2018/10/user-registration-module-using-springboot-springmvc-springsecurity-hibernate5-thymeleaf-mysql.html
