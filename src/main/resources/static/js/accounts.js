@@ -1,8 +1,5 @@
 function saveAccount(isNew) {
-    //$("#accountsGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#account").serializeJSON());
-    ajaxPost('insertAccount', $("#account").serializeJSON()).success(function (response) {
-        alert(response.accountHolderName + " added sucessfully!");
-    });
+    $("#accountsGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#account").serializeJSON());
     $("#accountDialog").modal("hide");
 }
 
@@ -12,7 +9,7 @@ function openAccountModal(mode, item){
 		$('input[name="accountHolderName"]').val(item.accountHolderName);
 		$('input[name="accountNumber"]').val(item.accountNumber);
 		$('input[name="ifscCode"]').val(item.ifscCode);
-        $('#vehicleNumber').val(item.vehicleNumber);
+        $('#vehicleNumber').append('<option value="'+item.vehicleNumber+'" disabled selected>'+item.vehicleNumber+'</option');
 		$("#addAccount").attr("onclick", "saveAccount(false);");
 		$("#accountDialog").find('.modal-title').text("Edit Account");
 	} else {
@@ -30,15 +27,32 @@ function openAccountModal(mode, item){
 function initAccounts() {
     $("#accountsGrid").jsGrid({
         width: "100%",
-        height: "400px",
+        height: "100%",
         heading: true,
         sorting: true,
+        autoload: true,
+        paging: true,
+        pageLoading: false,
+        pageSize: 2,
+        pageIndex: 1,
+        controller: {
+            loadData: function (filter) {
+                return ajaxGet('accounts');
+            },
+            insertItem: function (item) {
+                return ajaxPost('insertAccount', item);
+            },
+            updateItem: function (item) {
+                return ajaxPost('insertAccount', item);
+            },
+            deleteItem: function (item) {
+                return ajaxPost('removeAccount', item.accountId);
+            }
+        },
+        
         noDataContent: "No Accounts added yet!",
         deleteConfirm: function(item) {
-            if(confirm("The Account " + item.accountHolderName + " will be removed. Are you sure?")){
-            	var response = ajaxPost('removeAccount', item.accountId)
-            }
-            return "The Account "+item.accountHolderName+" has been removed!";
+            confirm("The Account " + item.accountHolderName + " will be removed. Are you sure?");
         },
         rowClick: function(args) {
         	openAccountModal('Edit', args.item);

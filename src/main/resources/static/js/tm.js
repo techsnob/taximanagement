@@ -55,9 +55,6 @@ function hideContent() {
 
 var GLOBAL_FUNCTIONS = {
     showaccounts: function () {
-        ajaxGet('accounts').success(function (response) {
-            $("#accountsGrid").jsGrid("option", "data", JSON.parse(response));
-        });
         $("#accountDialog").load('pages/addaccount.html');
     },
     showdrivers: function () {
