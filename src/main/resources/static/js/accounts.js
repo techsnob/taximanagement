@@ -9,7 +9,7 @@ function openAccountModal(mode, item){
 		$('input[name="accountHolderName"]').val(item.accountHolderName);
 		$('input[name="accountNumber"]').val(item.accountNumber);
 		$('input[name="ifscCode"]').val(item.ifscCode);
-        $('#vehicleNumber').append('<option value="'+item.vehicleNumber+'" disabled selected>'+item.vehicleNumber+'</option');
+        $('#vehicleNumber').append('<option value="'+item.vehicleNumber+'" selected>'+item.vehicleNumber+'</option');
 		$("#addAccount").attr("onclick", "saveAccount(false);");
 		$("#accountDialog").find('.modal-title').text("Edit Account");
 	} else {
