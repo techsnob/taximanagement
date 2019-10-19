@@ -2,6 +2,7 @@
 package com.techsnob.service;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class UserService implements UserDetailsService {
 	public void saveUser(User user) {
         user.setPassword(bcryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
+        user.setDateCreated(new Date());
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);

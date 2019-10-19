@@ -82,6 +82,9 @@ function loadMediaContent(){
 
 $(function () {
     $("#content").modal('show');
+    ajaxGet('loggeduser').success(function (response) {
+        $("#loggeduser").html(response.username && response.username[0].toUpperCase() + response.username.slice(1));
+    });
     hideContent();
     $("[data]").click(function () {
         hideContent();
