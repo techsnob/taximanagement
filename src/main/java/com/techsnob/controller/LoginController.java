@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techsnob.entitiy.User;
@@ -18,8 +19,9 @@ public class LoginController {
 	private UserService userService;
 	
 	@PostMapping("/registration")
-    public void register(User user) {
+    public ResponseEntity<Object> register(@RequestBody User user) {
 		userService.saveUser(user);
+		return new ResponseEntity<Object>(user.getUsername(), HttpStatus.OK);
     }
 	
 	@GetMapping("/loggeduser")

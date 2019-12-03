@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <title>Taxi Management | Registration</title>
     <link type="text/css" rel="stylesheet" href="plugins/bootstrap4/css/bootstrap.min.css">
     <link type="image/x-icon" rel="icon" href="css/images/favicon.ico">
     <script type="text/javascript" src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="plugins/bootstrap4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="plugins/jsonserialization/jquery.serializejson.min.js"></script>
+	<link rel="stylesheet" href="css/all.min.css">
 	<style>
 	html, body{
 	height: 100%;
@@ -16,7 +17,7 @@
 <body>
 <div class="d-flex align-items-center flex-column justify-content-center h-100">
     <h1 class="display-4">Register User</h1>
-    <form method="post" action="registration">
+    <form id="registration-form">
         <div class="form-group">
             <input class="form-control form-control-lg" placeholder="Username" type="text" name="username" required autofocus>
         </div>
@@ -24,10 +25,24 @@
             <input class="form-control form-control-lg" placeholder="Password" type="password" name="password" required>
         </div>
         <div class="form-group">
-            <button class="btn btn-info btn-lg btn-block">Register!</button>
+            <input type="button" class="btn btn-info btn-lg btn-block" id="register" value="Register" onclick="registerUser();">
         </div>
     </form>
-    <a href="login.html" class="float-right">ALready have an account? Login here</a>
+    <a href="login.html" class="float-right">Already have an account? Login here</a>
 </div>
+<script>
+    function registerUser() {
+        $.ajax({
+            type: "POST",
+            url: 'registration',
+            data: JSON.stringify($("#registration-form").serializeJSON()),
+            contentType: "application/json",
+            success: function (response) {
+                alert("User "+ response + "registered successfully. Please login!");
+                window.location.href="login.html";
+            }
+        });
+    }
+</script>
 </body>
 </html>
