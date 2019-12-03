@@ -1,22 +1,34 @@
+var itemToUpdate = {};
 function saveVehicle(isNew) {
-    //$("#vehiclesGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#vehicle").serializeJSON());
-    ajaxPostFileData("putvehicle",new FormData($("#vehicle")[0]));
+    var vehiclesGrid = $("#vehiclesGrid"), vehicleForm = new FormData($("#vehicle")[0]);
+    if(isNew){
+        vehiclesGrid.jsGrid("insertItem", vehicleForm);
+    } else {
+        vehiclesGrid.jsGrid("updateItem", itemToUpdate, vehicleForm);
+    }
+    //itemToUpdate = {}; //Cleanup while reviewing
     $("#vehicleDialog").modal("hide");
 }
 
 function openVehicleModal(mode, item){
-	if(mode == 'Edit'){
+    var vehicleDialog = $("#vehicleDialog"), insertVehicle = $("#insertvehicle");
+	if(mode === 'Edit'){
 		$('input[name="vehicleId"]').val(item.vehicleId);
 		$('input[name="rcNumber"]').val(item.rcNumber);
-		$('input[name="vehicleType"]').val(item.vehicleType);
-		$("#insertvehicle").attr("onclick", "saveVehicle(false);");
-		$("#vehicleDialog").find('.modal-title').text("Edit Vehicle");
-		$("#vehicleDialog").modal('show');
+		$("input[name=vehicleType][value="+item.vehicleType+"]").prop('checked', true);
+        itemToUpdate = JSON.parse(JSON.stringify(item));
+        delete itemToUpdate['rcFileType'];
+        delete itemToUpdate['fitnessType'];
+        delete itemToUpdate['insuranceType'];
+        delete itemToUpdate['taxsheetType'];
+        insertVehicle.attr("onclick", "saveVehicle(false);");
+        vehicleDialog.find('.modal-title').text("Edit Vehicle");
+        vehicleDialog.modal('show');
 	} else {
-		$('input[name="vehicleId"]').val("");
-		$("#insertvehicle").attr("onclick", "saveVehicle(true);");
+        $("#vehicle")[0].reset();
+        insertVehicle.attr("onclick", "saveVehicle(true);");
 	}
-	$("#vehicleDialog").modal('show');
+    vehicleDialog.modal('show');
 }
 
 function initVehicles() {
@@ -26,6 +38,14 @@ function initVehicles() {
         heading: true,
         sorting: true,
         noDataContent: "No Vehicles added yet!",
+        controller: {
+            insertItem: function (item) {
+                return ajaxPostFileData("putvehicle", item);
+            },
+            updateItem: function (item) { //This is a callback function
+                return ajaxPostFileData("putvehicle", item);
+            }
+        },
         deleteConfirm: function(item) {
             if(confirm("The vehicle " + item.rcNumber + " will be removed. Are you sure?")){
             	var response = ajaxPost('removevehicle', item.vehicleId)
@@ -36,7 +56,7 @@ function initVehicles() {
         	openVehicleModal('Edit', args.item);
         },
         fields: [
-        	{name: "vehicleId", type: "text", visible:false},
+        	{title: 'Vehicle ID', name: "vehicleId", type: "text"},
             {title: "Vehicle RC No", name: "rcNumber", type: "text"},
             {title: "Vehicle Type", name: "vehicleType", type: "text"},
             {name: "rcFileType", type: "text", visible: false},
@@ -66,7 +86,7 @@ function initVehicles() {
                         .attr("href", 'media?fileName=taxsheet&moduleName=vehicles&contentType='+item.taxsheetType+'&columnId='+item.vehicleId)
                         .attr("target", "_blank")
                         .text("Link");
-                }},
+            }},
             {
                 type: "control",
                 modeSwitchButton: false,
