@@ -50,7 +50,7 @@ public class MediaController {
 		} else if (moduleName.equals("vehicles")){
 			primaryKeyColumnname = "vehicle_id";
 		}
-		jdbcTemplate.update("UPDATE "+moduleName+" SET "+fileName+"=null"+" WHERE "+primaryKeyColumnname+"=?", Long.valueOf(columnId));
+		jdbcTemplate.update("UPDATE "+moduleName+" SET "+fileName+"=null,"+fileName.concat("_type")+"=''"+" WHERE "+primaryKeyColumnname+"=?", Long.valueOf(columnId));
 		return new ResponseEntity<>("Deleted", headers, HttpStatus.OK);
 	}
 

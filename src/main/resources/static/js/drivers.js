@@ -59,21 +59,21 @@ function initDrivers() {
             {title: "First Name", name: "firstName", type: "text"},
             {title: "Last Name", name: "lastName", type: "text"},
             {title: "Phone Number", name: "phoneNumber", type: "text"},
-            {name: "aadhaar_contenttype", type: "text", visible: false},
+            {name: "aadhaar_type", type: "text", visible: false},
             { title: "Aadhaar", itemTemplate: function(_, item) {
                     if(item.aadhaar === null || item.aadhaar ==='' || item.aadhaar === undefined){
                         return showUploadMediaHtml(item, 'aadhaar', 'drivers',item.driverId);
                     } else {
-                        return handleMedia(item, 'aadhaar', 'drivers',item.aadhaar_contenttype, item.driverId );
+                        return handleMedia(item, 'aadhaar', 'drivers',item.aadhaar_type, item.driverId );
                     }
               	}
             },
-            {name: "license_contenttype", type: "text", visible: false},
+            {name: "license_type", type: "text", visible: false},
             { title: "License", itemTemplate: function(_, item) {
-                    if(item.license === null || item.license ===''){
+                    if(item.license_type === null || item.license_type === ""){
                         return showUploadMediaHtml(item, 'license', 'drivers',item.driverId);
                     } else {
-                        return handleMedia(item, 'license', 'drivers',item.license_contenttype, item.driverId );
+                        return handleMedia(item, 'license', 'drivers',item.license_type, item.driverId );
                     }
 	          	}
 	        },
