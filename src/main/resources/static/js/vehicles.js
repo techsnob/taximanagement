@@ -21,6 +21,10 @@ function openVehicleModal(mode, item){
         delete itemToUpdate['fitnessType'];
         delete itemToUpdate['insuranceType'];
         delete itemToUpdate['taxsheetType'];
+        $('input[name="rcFile"]').hide();
+        $('input[name="fitness"]').hide();
+        $('input[name="insurance"]').hide();
+        $('input[name="taxsheet"]').hide();
         insertVehicle.attr("onclick", "saveVehicle(false);");
         vehicleDialog.find('.modal-title').text("Edit Vehicle");
         vehicleDialog.modal('show');
