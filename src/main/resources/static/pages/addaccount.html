@@ -6,15 +6,16 @@
         </div>
 
         <div class="modal-body">
-            <form id="account">
-            	<div><input type="text" name="accountId" hidden="hidden"></div>
-                <div><input placeholder="Account Holder Name" type="text" name="accountHolderName"></div>
-                <div><input placeholder="Account Number" type="text" name="accountNumber"></div>
-                <div><input placeholder="IFSC Code" type="text" name="ifscCode"></div>
-				<div><select id="vehicleNumber" name="vehicleNumber"></select>
-				</div>
-				<div><input type="button" value="Submit" id="addAccount" class="btn btn-primary"></div>
-            </form>
+            <div class="container">
+                <form id="account">
+                    <input class="form-control" type="text" name="accountId" hidden="hidden">
+                    <div class="form-group"><input class="form-control" placeholder="Account Holder Name" type="text" name="accountHolderName"></div>
+                    <div class="form-group"><input class="form-control" placeholder="Account Number" type="text" name="accountNumber"></div>
+                    <div class="form-group"><input class="form-control" placeholder="IFSC Code" type="text" name="ifscCode"></div>
+                    <div class="form-group"><select id="vehicleNumber" name="vehicleNumber" class="custom-select"></select></div>
+                    <div class="form-group"><input type="button" value="Submit" id="addAccount" class="btn btn-primary"></div>
+                </form>
+            </div>
         </div>
 
         <div class="modal-footer">
