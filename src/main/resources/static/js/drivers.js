@@ -1,14 +1,14 @@
 function saveDriver(isNew) {
-    //$("#driversGrid").jsGrid(isNew ? "insertItem" : "updateItem", $("#driver").serializeJSON());
     var postData;
     if(isNew){
-    	url = "insertDriver";
-    	postData = new FormData($("#driver")[0]);
+        url = "insertDriver";
+        postData = new FormData($("#driver")[0]);
     } else {
-    	url = "updateDriver";
-    	postData = new FormData($("#driver")[0]);
+        url = "updateDriver";
+        postData = new FormData($("#driver")[0]);
     }
-    ajaxPostFileData(url,postData);
+    var response = ajaxPostFileData('insertDriver', new FormData($("#driver")[0]));
+    $("#driversGrid").jsGrid(isNew ? "insertItem" : "updateItem", response);
     $("#driverDialog").modal("hide");
 }
 
@@ -44,7 +44,7 @@ function initDrivers() {
         	openDriverModal('Edit', args.item);
         },
         fields: [
-            {name: "driverId", type: "text", visible: false},
+            {title:'Driver ID',  name: "driverId", type: "text"},
             {title: "First Name", name: "firstName", type: "text"},
             {title: "Last Name", name: "lastName", type: "text"},
             {title: "Phone Number", name: "phoneNumber", type: "text"},

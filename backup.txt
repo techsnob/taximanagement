@@ -58,3 +58,8 @@ https://www.html5rocks.com/en/tutorials/file/dndfiles/ -- Reading files in JavaS
                     	https://github.com/tscript3r/photogram
                     	https://github.com/callicoder/spring-security-react-ant-design-polls-app
                     	https://www.javaguides.net/2018/10/user-registration-module-using-springboot-springmvc-springsecurity-hibernate5-thymeleaf-mysql.html
+
+                    	// return $("<a>")
+                            //     .attr("href", 'media?fileName='+fileName+'&moduleName='+module+'&contentType='+fileType+'&columnId='+itemId)
+                            //     .attr("target", "_blank")
+                            //     .text("Link"); //.attr('<span><a href="delete">Delete</a></span>')

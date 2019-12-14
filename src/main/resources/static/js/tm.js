@@ -46,6 +46,37 @@ function ajaxPostFileData(url, postData){
     });
 }
 
+function deleteMedia(element) {
+    if(element){
+        var url= element.previousElementSibling.getAttribute("href").replace("media","delete");
+        ajaxGet(url).success(function (data) {
+            alert(data);
+        });
+    }
+}
+
+function handleMedia(item, fileName, module, fileType, itemId) {
+    var html='<a target="_blank" href='+'media?fileName='+fileName+'&moduleName='+module+'&contentType='+fileType+'&columnId='+itemId+'>Link</a>';
+    html = html + '<span class="ml-3" onclick="deleteMedia(this);"><i class="fas fa-trash"></i></span>';
+    return html;
+}
+
+function uploadMediaInCell(element) {
+    var formData = new FormData($("#uploadContent")[0]);
+    ajaxPostFileData("updateMedia", formData).success(function (data) {
+        alert(data);
+    //TODO refreshCell content
+    });
+}
+
+function showUploadMediaHtml(item, fileName, moduleName, itemId) {
+    return '<form id="uploadContent"><input type="file" name="insurance" data="insurance,vehicles" onchange="uploadMediaInCell(this);" class="inputCell">'
+        +'<input type="text" name="moduleName" hidden value="'+moduleName+'">'
+        +'<input type="text" name="columnId" hidden value="'+itemId+'">'
+        +'<input type="text" name="fileName" hidden value="'+fileName+'">'
+        +'</form>';
+}
+
 function hideContent() {
     $("#accounts").hide();
     $("#vehicles").hide();

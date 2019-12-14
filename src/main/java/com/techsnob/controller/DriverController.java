@@ -35,12 +35,17 @@ public class DriverController {
     }
 
     @PostMapping(path = "/insertDriver", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = {"application/json"})
-    public Driver insertDriverDetails(@RequestParam("firstName") String firstName,
+    public Driver insertDriverDetails(@RequestParam("driverId") String driverId,
+                                      @RequestParam("firstName") String firstName,
                                       @RequestParam("lastName") String lastName,
                                       @RequestParam("phoneNumber") Long phoneNumber,
                                       @RequestParam("aadhaar") MultipartFile aadhaar,
                                       @RequestParam("license") MultipartFile license) throws IOException {
         Driver driver = new Driver(firstName, lastName, phoneNumber, aadhaar.getBytes(), aadhaar.getContentType(), license.getBytes(),  license.getContentType());
+        if(!driverId.isEmpty()){
+            driver = driverRepository.findById(Long.parseLong(driverId)).get();
+            driver.setDriverId(Long.parseLong(driverId));
+        }
         return driverRepository.save(driver);
     }
     
