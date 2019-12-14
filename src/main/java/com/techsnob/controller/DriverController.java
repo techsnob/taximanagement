@@ -62,8 +62,8 @@ public class DriverController {
     	driver.setPhoneNumber(phoneNumber);
     	driver.setAadhaar(aadhaar.getBytes());
     	driver.setLicense(license.getBytes());
-    	driver.setAadhaar_contenttype(aadhaar.getContentType());
-    	driver.setLicense_contenttype(license.getContentType());
+    	driver.setAadhaar_type(aadhaar.getContentType());
+    	driver.setLicense_type(license.getContentType());
         driverRepository.save(driver);
     }
     

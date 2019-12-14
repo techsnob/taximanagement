@@ -1,30 +1,33 @@
+var itemToUpdate = {};
 function saveDriver(isNew) {
-    var postData;
+    var driversGrid = $("#driversGrid"), driverForm = new FormData($("#driver")[0]);
     if(isNew){
-        url = "insertDriver";
-        postData = new FormData($("#driver")[0]);
+        driversGrid.jsGrid("insertItem", driverForm);
     } else {
-        url = "updateDriver";
-        postData = new FormData($("#driver")[0]);
+        driversGrid.jsGrid("updateItem", itemToUpdate , driverForm);
     }
-    var response = ajaxPostFileData('insertDriver', new FormData($("#driver")[0]));
-    $("#driversGrid").jsGrid(isNew ? "insertItem" : "updateItem", response);
     $("#driverDialog").modal("hide");
 }
 
 function openDriverModal(mode, item){
-	if(mode == 'Edit'){
+    var driverDialog = $("#driverDialog");
+	if(mode === 'Edit'){
 		$('input[name="driverId"]').val(item.driverId);
 		$('input[name="firstName"]').val(item.firstName);
 		$('input[name="lastName"]').val(item.lastName);
 		$('input[name="phoneNumber"]').val(item.phoneNumber);
+        $('input[name="license"]').hide();
+        $('input[name="aadhaar"]').hide();
+        itemToUpdate = JSON.parse(JSON.stringify(item));
+        delete itemToUpdate['aadhaar'];
+        delete itemToUpdate['fitness'];
 		$("#insertDriver").attr("onclick", "saveDriver(false);");
-		$("#driverDialog").find('.modal-title').text("Edit Driver");
-		$("#driverDialog").modal('show');
+        driverDialog.find('.modal-title').text("Edit Driver");
+        driverDialog.modal('show');
 	} else {
 		$("#insertDriver").attr("onclick", "saveDriver(true);");
 	}
-	$("#driverDialog").modal('show');
+    driverDialog.modal('show');
 }
 
 function initDrivers() {
@@ -34,6 +37,14 @@ function initDrivers() {
         heading: true,
         sorting: true,
         noDataContent: "No Drivers added yet!",
+        controller: {
+            insertItem: function (item) {
+                return ajaxPostFileData("insertDriver", item);
+            },
+            updateItem: function (item) { //This is a callback function
+                return ajaxPostFileData("updateDriver", item);
+            }
+        },
         deleteConfirm: function(item) {
             if(confirm("The driver " + item.firstName + " will be removed. Are you sure?")){
             	var response = ajaxPost('removedriver', item)
@@ -50,18 +61,20 @@ function initDrivers() {
             {title: "Phone Number", name: "phoneNumber", type: "text"},
             {name: "aadhaar_contenttype", type: "text", visible: false},
             { title: "Aadhaar", itemTemplate: function(_, item) {
-                    return $("<a>")
-                    	.attr("href", 'media?fileName=aadhaar&moduleName=drivers&contentType='+item.aadhaar_contenttype+'&columnId='+item.driverId)
-                    	.attr("target", "_blank")
-                    	.text("Link");
+                    if(item.aadhaar === null || item.aadhaar ==='' || item.aadhaar === undefined){
+                        return showUploadMediaHtml(item, 'aadhaar', 'drivers',item.driverId);
+                    } else {
+                        return handleMedia(item, 'aadhaar', 'drivers',item.aadhaar_contenttype, item.driverId );
+                    }
               	}
             },
             {name: "license_contenttype", type: "text", visible: false},
             { title: "License", itemTemplate: function(_, item) {
-                return $("<a>")
-                	.attr("href", 'media?fileName=license&moduleName=drivers&contentType='+item.license_contenttype+'&columnId='+item.driverId)
-                	.attr("target", "_blank")
-                	.text("Link");
+                    if(item.license === null || item.license ===''){
+                        return showUploadMediaHtml(item, 'license', 'drivers',item.driverId);
+                    } else {
+                        return handleMedia(item, 'license', 'drivers',item.license_contenttype, item.driverId );
+                    }
 	          	}
 	        },
             {
@@ -72,8 +85,6 @@ function initDrivers() {
                     return $("<button>")
                         .attr("type", "button")
                         .attr("class", "btn btn-primary")
-                        //.attr("data-toggle", "modal")
-                        //.attr("data-target", "#driverDialog")
                         .attr("onclick","openDriverModal();")
                         .text("Add");
                 }

@@ -43,14 +43,14 @@ https://www.html5rocks.com/en/tutorials/file/dndfiles/ -- Reading files in JavaS
                         //.attr("data-target", "#commonDialog")
                     	/*.on("click", function() {
                     		var data = {
-                    				contentType: item.aadhaar_contenttype,
+                    				contentType: item.aadhaar_type,
                     				fileName: "AADHAAR",
                     				moduleName: "DRIVERS",
                     				columnId: item.driverId
                     		};
                     		ajaxPost('media',data)
                     		//$("#commonDialogContent").html(ajaxPost('media',data));
-                    		//item.aadhaar_contenttype
+                    		//item.aadhaar_type
                     	});*/
                     	
                     	References from github:
