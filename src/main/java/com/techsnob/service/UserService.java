@@ -37,9 +37,12 @@ public class UserService implements UserDetailsService {
         user.setActive(1);
         user.setDateCreated(new Date());
         Role userRole = roleRepository.findByRole("ADMIN");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        userRepository.save(user);
+        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+		if(loadUserByUsername(user.getUsername()) == null) {
+			userRepository.save(user);
+		} else {
+			throw new RuntimeException(String.format("Username '%s' already exists!", user.getUsername().toUpperCase()));
+		}
     }
-
 
 }

@@ -57,8 +57,11 @@
                 data: JSON.stringify($("#registration-form").serializeJSON()),
                 contentType: "application/json",
                 success: function (response) {
-                    alert("User " + response + "registered successfully. Please login!");
+                    alert('User "' + response.toUpperCase() + '" registered successfully. Please login!');
                     window.location.href = "login.html";
+                },
+                error: function (response) {
+                    alert(response.responseText);
                 }
             });
         }
