@@ -4,26 +4,13 @@ nav {
   color: white;
 }
 
-.brand-name{
-  text-decoration: none;
-  margin-left: 1%;
-  color: white;
-  padding: 0.5%;
-}
-
-.brand-name:hover{
-  text-decoration: none;
-  margin-left: 1%;
-  color: white;
-  padding: 0.5%;
-}
-
 .page-footer{
   background-color: #004085;
   border-top: 2px solid #f77d00;
 }
 
 .sidebar{
+  padding-right: 0.1%;
   height: calc(100vh - 48px);
   padding-top: .1rem;
   overflow-x: hidden;

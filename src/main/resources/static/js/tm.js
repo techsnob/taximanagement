@@ -51,6 +51,7 @@ function deleteMedia(element) {
         var url= element.previousElementSibling.getAttribute("href").replace("media","delete");
         ajaxGet(url).success(function (data) {
             alert(data);
+            $("#vehiclesLink").click();
         });
     }
 }
@@ -77,33 +78,6 @@ function showUploadMediaHtml(item, fileName, moduleName, itemId) {
         +'</form>';
 }
 
-function hideContent() {
-    $("#accounts").hide();
-    $("#vehicles").hide();
-    $("#drivers").hide();
-    $("#reports").hide();
-}
-
-var GLOBAL_FUNCTIONS = {
-    showaccounts: function () {
-        $("#accountDialog").load('pages/addaccount.html');
-    },
-    showdrivers: function () {
-        ajaxGet('drivers').success(function (response) {
-            $("#driversGrid").jsGrid("option", "data", response);
-        });
-        $("#driverDialog").load('pages/adddriver.html');
-    },
-    showreports: function () {
-    },
-    showvehicles: function () {
-        ajaxGet('vehicles').success(function (response) {
-            $("#vehiclesGrid").jsGrid("option", "data", response);
-        });
-        $("#vehicleDialog").load('pages/addvehicle.html');
-    }
-};
-
 function loadMediaContent(){
 	var data = $("#test").serializeJSON();
 	ajaxPost('media',data).success(function(response){
@@ -116,16 +90,47 @@ $(function () {
     ajaxGet('loggeduser').success(function (response) {
         $("#loggeduser").html(response.username && response.username[0].toUpperCase() + response.username.slice(1));
     });
-    hideContent();
-    $("[data]").click(function () {
-        hideContent();
-        $("#" + this.getAttribute("data")).show();
-        var func = "show" + this.getAttribute("data");
-        GLOBAL_FUNCTIONS[func]();
+
+    $('#vehiclesLink').click(function(event){
+        event.preventDefault();
+        $('#mainContent').load($(this).attr('href'), function () {
+            ajaxGet('vehicles').success(function (response) {
+                $("#vehiclesGrid").jsGrid("option", "data", response);
+            });
+            initVehicles();
+        });
+        return false;
     });
-    initDrivers();
-    initAccounts();
-    initTrip();
-    initVehicles();
+
+    $('#driversLink').click(function(event){
+        event.preventDefault();
+        $('#mainContent').load($(this).attr('href'), function () {
+            ajaxGet('drivers').success(function (response) {
+                $("#driversGrid").jsGrid("option", "data", response);
+            });
+            initDrivers();
+        });
+        return false;
+    });
+
+    $('#accountsLink').click(function(event){
+        event.preventDefault();
+        $('#mainContent').load($(this).attr('href'), function () {
+            //ajaxGet('vehicles').success(function (response) {
+                //$("#accountDialog").jsGrid("option", "data", response);
+            //});
+            initAccounts();
+        });
+        return false;
+    });
+
+    $('#reportsLink').click(function(event){
+        event.preventDefault();
+        $('#mainContent').load($(this).attr('href'), function () {
+            initTrip();
+        });
+        return false;
+    });
+
     $("#content").modal('hide');
 });

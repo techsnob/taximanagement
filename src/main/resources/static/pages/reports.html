@@ -1,0 +1,33 @@
+<div><h2>Vehicle Billing</h2></div>
+<table class="table">
+    <tbody>
+    <tr>
+        <td><label>Long</label></td>
+        <td>
+            <input type="text" value="5" name="longtriprate" readonly> X
+            <input type="text" name="longtrip" onblur="calculateTripRate('longtrip');"> =
+            <input type="text" name="longtrip[total]" value="0" readonly>
+        </td>
+    </tr>
+    <tr>
+        <td><label>Medium</label></td>
+        <td>
+            <input type="text" value="5" name="mediumtriprate" readonly> X
+            <input type="text" name="mediumtrip" onblur="calculateTripRate('mediumtrip');"> =
+            <input type="text" name="mediumtrip[total]" value="0" readonly>
+        </td>
+    </tr>
+    <tr>
+        <td><label>Short</label></td>
+        <td class="">
+            <input type="text" value="5" name="shorttriprate" readonly> X
+            <input type="text" name="shorttrip" onblur="calculateTripRate('shorttrip');"> =
+            <input type="text" name="shorttrip[total]" value="0" readonly>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="float-right">Total <input type="text" name="triptotal" readonly></td>
+    </tr>
+    </tbody>
+</table>
