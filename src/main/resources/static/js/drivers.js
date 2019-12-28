@@ -61,7 +61,7 @@ function initDrivers() {
             {title: "Phone Number", name: "phoneNumber", type: "text"},
             {name: "aadhaar_type", type: "text", visible: false},
             { title: "Aadhaar", itemTemplate: function(_, item) {
-                    if(item.aadhaar === null || item.aadhaar ==='' || item.aadhaar === undefined){
+                    if(item.aadhaar_type === null || item.aadhaar_type ==='' || item.aadhaar_type === undefined){
                         return showUploadMediaHtml(item, 'aadhaar', 'drivers',item.driverId);
                     } else {
                         return handleMedia(item, 'aadhaar', 'drivers',item.aadhaar_type, item.driverId );
