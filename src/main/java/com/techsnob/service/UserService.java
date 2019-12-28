@@ -45,4 +45,15 @@ public class UserService implements UserDetailsService {
 		}
     }
 
+	public User loadUserByUsernameAndMobileNumber(String username, String mobileNumber) throws UsernameNotFoundException {
+		return userRepository.findByUsernameAndMobileNumber(username, mobileNumber).orElseThrow(() -> new RuntimeException(String.format("User '%s' doesn't exists, please check your username and mobile number.", username)));
+	}
+
+	public User findUserByUsername(String username){
+		return userRepository.findUserByUsername(username);
+	}
+
+	public void updatePassword(User user) {
+		userRepository.updatePassword(user.getUsername(), bcryptPasswordEncoder.encode(user.getPassword()));
+	}
 }
