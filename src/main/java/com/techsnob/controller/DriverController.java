@@ -49,22 +49,9 @@ public class DriverController {
         return driverRepository.save(driver);
     }
     
-    @PostMapping(path = "/updateDriver", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = {"application/json"})
-    public void updateDriver(@RequestParam("driverId") String driverId, @RequestParam("firstName") String firstName,
-                                      @RequestParam("lastName") String lastName,
-                                      @RequestParam("phoneNumber") Long phoneNumber,
-                                      @RequestParam("aadhaar") MultipartFile aadhaar,
-                                      @RequestParam("license") MultipartFile license) throws IOException {
-    	Driver driver = driverRepository.findById(Long.valueOf(driverId)).get();
-    	driver.setDriverId(Long.valueOf(driverId));
-    	driver.setFirstName(firstName);
-    	driver.setLastName(lastName);
-    	driver.setPhoneNumber(phoneNumber);
-    	driver.setAadhaar(aadhaar.getBytes());
-    	driver.setLicense(license.getBytes());
-    	driver.setAadhaar_type(aadhaar.getContentType());
-    	driver.setLicense_type(license.getContentType());
-        driverRepository.save(driver);
+    @PostMapping(path = "/updateDriver", consumes = MediaType.APPLICATION_JSON_VALUE, produces = {"application/json"})
+    public void updateDriver(@RequestBody Driver driver) throws IOException {
+        driverRepository.updateDriver(driver.getFirstName(), driver.getLastName(), driver.getPhoneNumber(), driver.getDriverId());
     }
     
     @PostMapping(path = "/removedriver", consumes = "application/json", produces = {"application/json"})

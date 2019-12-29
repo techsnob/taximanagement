@@ -1,12 +1,12 @@
-var itemToUpdate = {};
 function saveDriver(isNew) {
-    var driversGrid = $("#driversGrid"), driverForm = new FormData($("#driver")[0]);
+    var driversGrid = $("#driversGrid");
     if(isNew){
-        driversGrid.jsGrid("insertItem", driverForm);
+        driversGrid.jsGrid("insertItem", new FormData($("#driver")[0]));
     } else {
-        driversGrid.jsGrid("updateItem", itemToUpdate , driverForm);
+        driversGrid.jsGrid("updateItem", itemToUpdate , $("#driver").serializeJSON());
     }
     $("#driverDialog").modal("hide");
+    $("#driversLink").click();
 }
 
 function openDriverModal(mode, item){
@@ -18,13 +18,12 @@ function openDriverModal(mode, item){
 		$('input[name="phoneNumber"]').val(item.phoneNumber);
         $('input[name="license"]').hide();
         $('input[name="aadhaar"]').hide();
-        itemToUpdate = JSON.parse(JSON.stringify(item));
-        delete itemToUpdate['aadhaar'];
-        delete itemToUpdate['fitness'];
 		$("#insertDriver").attr("onclick", "saveDriver(false);");
         driverDialog.find('.modal-title').text("Edit Driver");
         driverDialog.modal('show');
 	} else {
+        $('input[name="license"]').show();
+        $('input[name="aadhaar"]').show();
 		$("#insertDriver").attr("onclick", "saveDriver(true);");
 	}
     driverDialog.modal('show');
@@ -42,7 +41,7 @@ function initDrivers() {
                 return ajaxPostFileData("insertDriver", item);
             },
             updateItem: function (item) { //This is a callback function
-                return ajaxPostFileData("updateDriver", item);
+                return ajaxPost("updateDriver", item);
             }
         },
         deleteConfirm: function(item) {
