@@ -7,7 +7,9 @@ function saveVehicle(isNew) {
     }
     $("#vehicleDialog").modal("hide");
     //$("#vehiclesGrid").jsGrid("loadData");
-    $("#vehiclesLink").click();
+    setTimeout(function () {
+        $("#vehiclesLink").click();
+    }, 200);
 }
 
 function openVehicleModal(mode, item){

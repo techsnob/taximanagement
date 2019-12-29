@@ -6,7 +6,9 @@ function saveDriver(isNew) {
         driversGrid.jsGrid("updateItem", itemToUpdate , $("#driver").serializeJSON());
     }
     $("#driverDialog").modal("hide");
-    $("#driversLink").click();
+    setTimeout(function () {
+        $("#driversLink").click();
+    }, 200);
 }
 
 function openDriverModal(mode, item){
