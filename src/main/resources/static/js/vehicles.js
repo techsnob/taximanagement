@@ -4,10 +4,10 @@ function saveVehicle(isNew) {
         vehiclesGrid.jsGrid("insertItem", new FormData($("#vehicle")[0]));
     } else {
         vehiclesGrid.jsGrid("updateItem", itemToUpdate, $("#vehicle").serializeJSON());
-        //$("#vehiclesGrid").jsGrid("loadData");
-        $("#vehiclesLink").click();
     }
     $("#vehicleDialog").modal("hide");
+    //$("#vehiclesGrid").jsGrid("loadData");
+    $("#vehiclesLink").click();
 }
 
 function openVehicleModal(mode, item){
