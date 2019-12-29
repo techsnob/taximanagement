@@ -1,12 +1,12 @@
-var itemToUpdate = {};
 function saveVehicle(isNew) {
-    var vehiclesGrid = $("#vehiclesGrid"), vehicleForm = new FormData($("#vehicle")[0]);
+    var vehiclesGrid = $("#vehiclesGrid");
     if(isNew){
-        vehiclesGrid.jsGrid("insertItem", vehicleForm);
+        vehiclesGrid.jsGrid("insertItem", new FormData($("#vehicle")[0]));
     } else {
-        vehiclesGrid.jsGrid("updateItem", itemToUpdate, vehicleForm);
+        vehiclesGrid.jsGrid("updateItem", itemToUpdate, $("#vehicle").serializeJSON());
+        //$("#vehiclesGrid").jsGrid("loadData");
+        $("#vehiclesLink").click();
     }
-    //itemToUpdate = {}; //TODO Cleanup while reviewing
     $("#vehicleDialog").modal("hide");
 }
 
@@ -16,11 +16,6 @@ function openVehicleModal(mode, item){
 		$('input[name="vehicleId"]').val(item.vehicleId);
 		$('input[name="rcNumber"]').val(item.rcNumber);
 		$("input[name=vehicleType][value="+item.vehicleType+"]").prop('checked', true);
-        itemToUpdate = JSON.parse(JSON.stringify(item));
-        delete itemToUpdate['rcFileType'];
-        delete itemToUpdate['fitnessType'];
-        delete itemToUpdate['insuranceType'];
-        delete itemToUpdate['taxsheetType'];
         $('input[name="rcFile"]').hide();
         $('input[name="fitness"]').hide();
         $('input[name="insurance"]').hide();
@@ -30,6 +25,10 @@ function openVehicleModal(mode, item){
         vehicleDialog.modal('show');
 	} else {
         $("#vehicle")[0].reset();
+        $('input[name="rcFile"]').show();
+        $('input[name="fitness"]').show();
+        $('input[name="insurance"]').show();
+        $('input[name="taxsheet"]').show();
         insertVehicle.attr("onclick", "saveVehicle(true);");
 	}
     vehicleDialog.modal('show');
@@ -47,7 +46,7 @@ function initVehicles() {
                 return ajaxPostFileData("putvehicle", item);
             },
             updateItem: function (item) { //This is a callback function
-                return ajaxPostFileData("putvehicle", item);
+                return ajaxPost("updatevehicle", item);
             }
         },
         deleteConfirm: function(item) {
@@ -73,10 +72,6 @@ function initVehicles() {
             }},
             {name: "fitnessType", type: "text", visible: false},
             {title: "Fitness", itemTemplate: function(_, item) {
-                    // return $("<a>")
-                    //     .attr("href", 'media?fileName=fitness&moduleName=vehicles&contentType='+item.fitnessType+'&columnId='+item.vehicleId)
-                    //     .attr("target", "_blank")
-                    //     .text("Link");
                     if(item.fitness === null || item.fitness ===''){
                         return showUploadMediaHtml(item, 'fitness', 'vehicles',item.vehicleId);
                     } else {

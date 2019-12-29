@@ -53,6 +53,11 @@ public class VehicleController {
 		}
 		return vehicleRepository.save(vehicle);
 	}
+
+	@PostMapping(path="/updatevehicle", consumes = MediaType.APPLICATION_JSON_VALUE, produces = {"application/json"})
+	public void updateVehicle(@RequestBody Vehicle vehicle) {
+		vehicleRepository.updateVehicle(vehicle.getVehicleType(), vehicle.getRcNumber(), vehicle.getVehicleId());
+	}
 	
 	@PostMapping(path = "/removevehicle", consumes = "application/json", produces = {"application/json"})
     public void removeDriver(@RequestBody String vehicleId) {
