@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "drivers")
 @JsonIgnoreProperties({"license","aadhaar"})
-public class Driver implements Serializable {
+public class Driver extends Auditable<String> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "driver_seq")

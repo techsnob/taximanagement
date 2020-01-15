@@ -1,0 +1,84 @@
+Index: src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- src/main/resources/application.properties	(revision ccfa0d7df117c6c29a860bee89010645fc00d4a5)
++++ src/main/resources/application.properties	(date 1577725680103)
+@@ -27,6 +27,9 @@
+ spring.queries.users-query=select username, password, active from user where username=?
+ spring.queries.roles-query=select u.username, r.role from user u inner join user_role ur on(u.user_id=ur.user_id) inner join role r on(ur.role_id=r.role_id) where u.username=?
+ 
++logging.level.root=WARN
++logging.level.com.techsnob=DEBUG
++
+ # ==============================================================
+ # = Initialize the database using data.sql script
+ # ==============================================================
+Index: src/main/resources/static/js/accounts.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/static/js/accounts.js	(revision ccfa0d7df117c6c29a860bee89010645fc00d4a5)
++++ src/main/resources/static/js/accounts.js	(date 1577637198224)
+@@ -49,6 +49,7 @@
+         pageLoading: false,
+         pageSize: 2,
+         pageIndex: 1,
++        insertRowLocation: "top",
+         controller: {
+             loadData: function (filter) {
+                 return ajaxGet('accounts');
+Index: src/main/resources/static/js/drivers.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/static/js/drivers.js	(revision ccfa0d7df117c6c29a860bee89010645fc00d4a5)
++++ src/main/resources/static/js/drivers.js	(date 1577982502492)
+@@ -31,6 +31,18 @@
+     driverDialog.modal('show');
+ }
+ 
++var MyCustomDirectLoadStrategy = function(grid) {
++    jsGrid.loadStrategies.DirectLoadingStrategy.call(this, grid);
++};
++
++MyCustomDirectLoadStrategy.prototype = new jsGrid.loadStrategies.DirectLoadingStrategy();
++
++MyCustomDirectLoadStrategy.prototype.finishInsert = function(insertedItem) {
++    var grid = this._grid;
++    grid.option("data").unshift(insertedItem);
++    grid.refresh();
++};
++
+ function initDrivers() {
+     $("#driversGrid").jsGrid({
+         width: "100%",
+@@ -38,6 +50,9 @@
+         heading: true,
+         sorting: true,
+         noDataContent: "No Drivers added yet!",
++        loadStrategy: function() {
++            return new MyCustomDirectLoadStrategy(this);
++        },
+         controller: {
+             insertItem: function (item) {
+                 return ajaxPostFileData("insertDriver", item);
+Index: src/main/resources/static/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/static/index.html	(revision ccfa0d7df117c6c29a860bee89010645fc00d4a5)
++++ src/main/resources/static/index.html	(date 1577981726677)
+@@ -47,7 +47,7 @@
+ </div>
+ <script type="text/javascript" src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+ <script type="text/javascript" src="plugins/jsonserialization/jquery.serializejson.min.js"></script>
+-<script type="text/javascript" src="plugins/jsgrid/jsgrid.min.js"></script>
++<script type="text/javascript" src="plugins/jsgrid/jsgrid.js"></script>
+ <script type="text/javascript" src="plugins/bootstrap4/js/bootstrap.min.js"></script>
+ <script type="text/javascript" src="js/drivers.js"></script>
+ <script type="text/javascript" src="js/accounts.js"></script>

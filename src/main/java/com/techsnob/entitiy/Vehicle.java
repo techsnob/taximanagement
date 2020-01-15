@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vehicles")
-public class Vehicle implements Serializable {
+public class Vehicle extends Auditable<String> implements Serializable {
 
     private static final long serialVersionUID = -1067954603890596442L;
 

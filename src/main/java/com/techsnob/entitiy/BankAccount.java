@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class BankAccount implements Serializable{
+public class BankAccount extends Auditable<String> implements Serializable{
 	
 	private static final long serialVersionUID = 526158785972522314L;
 
