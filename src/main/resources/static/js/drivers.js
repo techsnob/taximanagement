@@ -14,18 +14,18 @@ function saveDriver(isNew) {
 function openDriverModal(mode, item){
     var driverDialog = $("#driverDialog");
 	if(mode === 'Edit'){
-		$('input[name="driverId"]').val(item.driverId);
-		$('input[name="firstName"]').val(item.firstName);
-		$('input[name="lastName"]').val(item.lastName);
-		$('input[name="phoneNumber"]').val(item.phoneNumber);
-        $('input[name="license"]').hide();
-        $('input[name="aadhaar"]').hide();
+		$("#driverId").val(item.driverId);
+		$("#firstName").val(item.firstName);
+		$("#lastName").val(item.lastName);
+		$("#phoneNumber").val(item.phoneNumber);
+        $("#license").hide();
+        $("#aadhaar").hide();
 		$("#insertDriver").attr("onclick", "saveDriver(false);");
         driverDialog.find('.modal-title').text("Edit Driver");
         driverDialog.modal('show');
 	} else {
-        $('input[name="license"]').show();
-        $('input[name="aadhaar"]').show();
+        $("#license").show();
+        $("#aadhaar").show();
 		$("#insertDriver").attr("onclick", "saveDriver(true);");
 	}
     driverDialog.modal('show');
@@ -56,7 +56,7 @@ function initDrivers() {
         	openDriverModal('Edit', args.item);
         },
         fields: [
-            {title:'Driver ID',  name: "driverId", type: "text"},
+            {title:'Driver ID',  name: "driverId", type: "text", visible: false},
             {title: "First Name", name: "firstName", type: "text"},
             {title: "Last Name", name: "lastName", type: "text"},
             {title: "Phone Number", name: "phoneNumber", type: "text"},

@@ -18,19 +18,19 @@ function openVehicleModal(mode, item){
 		$('input[name="vehicleId"]').val(item.vehicleId);
 		$('input[name="rcNumber"]').val(item.rcNumber);
 		$("input[name=vehicleType][value="+item.vehicleType+"]").prop('checked', true);
-        $('input[name="rcFile"]').hide();
-        $('input[name="fitness"]').hide();
-        $('input[name="insurance"]').hide();
-        $('input[name="taxsheet"]').hide();
+        $("#rcFile").hide();
+        $("#fitness").hide();
+        $("#insurance").hide();
+        $("#taxsheet").hide();
         insertVehicle.attr("onclick", "saveVehicle(false);");
         vehicleDialog.find('.modal-title').text("Edit Vehicle");
         vehicleDialog.modal('show');
 	} else {
         $("#vehicle")[0].reset();
-        $('input[name="rcFile"]').show();
-        $('input[name="fitness"]').show();
-        $('input[name="insurance"]').show();
-        $('input[name="taxsheet"]').show();
+        $("#rcFile").show();
+        $("#fitness").show();
+        $("#insurance").show();
+        $("#taxsheet").show();
         insertVehicle.attr("onclick", "saveVehicle(true);");
 	}
     vehicleDialog.modal('show');
@@ -61,7 +61,7 @@ function initVehicles() {
         	openVehicleModal('Edit', args.item);
         },
         fields: [
-        	{title: 'Vehicle ID', name: "vehicleId", type: "text"},
+        	{title: 'Vehicle ID', name: "vehicleId", type: "text", visible: false},
             {title: "Vehicle RC No", name: "rcNumber", type: "text"},
             {title: "Vehicle Type", name: "vehicleType", type: "text"},
             {name: "rcFileType", type: "text", visible: false},

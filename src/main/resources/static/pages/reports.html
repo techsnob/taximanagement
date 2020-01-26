@@ -4,30 +4,61 @@
     <tr>
         <td><label>Long</label></td>
         <td>
-            <input type="text" value="5" name="longtriprate" readonly> X
-            <input type="text" name="longtrip" onblur="calculateTripRate('longtrip');"> =
-            <input type="text" name="longtrip[total]" value="0" readonly>
+            <div class="row">
+                <div class="col">
+                    <input type="text" value="5" name="longtriprate" readonly> X
+                </div>
+                <div class="col">
+                    <input type="text" name="longtrip" onblur="calculateTripRate('longtrip');"> =
+                </div>
+                <div class="col">
+                    <input type="text" name="longtrip[total]" value="0" readonly>
+                </div>
+            </div>
         </td>
     </tr>
     <tr>
         <td><label>Medium</label></td>
         <td>
-            <input type="text" value="5" name="mediumtriprate" readonly> X
-            <input type="text" name="mediumtrip" onblur="calculateTripRate('mediumtrip');"> =
-            <input type="text" name="mediumtrip[total]" value="0" readonly>
+            <div class="row">
+                <div class="col">
+                    <input type="text" value="5" name="mediumtriprate" readonly> X
+                </div>
+                <div class="col">
+                    <input type="text" name="mediumtrip" onblur="calculateTripRate('mediumtrip');"> =
+                </div>
+                <div class="col">
+                    <input type="text" name="mediumtrip[total]" value="0" readonly>
+                </div>
+            </div>
         </td>
     </tr>
     <tr>
         <td><label>Short</label></td>
         <td class="">
-            <input type="text" value="5" name="shorttriprate" readonly> X
-            <input type="text" name="shorttrip" onblur="calculateTripRate('shorttrip');"> =
-            <input type="text" name="shorttrip[total]" value="0" readonly>
+            <div class="row">
+                <div class="col">
+                    <input type="text" value="5" name="shorttriprate" readonly> X
+                </div>
+                <div class="col">
+                    <input type="text" name="shorttrip" onblur="calculateTripRate('shorttrip');"> =
+                </div>
+                <div class="col">
+                    <input type="text" name="shorttrip[total]" value="0" readonly>
+                </div>
+            </div>
         </td>
     </tr>
     <tr>
-        <td></td>
-        <td class="float-right">Total <input type="text" name="triptotal" readonly></td>
+        <td><label>Total</label></td>
+        <td>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" name="triptotal" readonly>
+                </div>
+            </div>
+        </td>
     </tr>
     </tbody>
 </table>
+

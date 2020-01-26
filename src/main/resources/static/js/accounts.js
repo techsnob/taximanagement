@@ -16,10 +16,10 @@ function openAccountModal(mode, item){
     var addAct = $("#addAccount");
     var vehicleNumber = $('#vehicleNumber');
 	if(mode === 'Edit'){
-		$('input[name="accountId"]').val(item.accountId);
-		$('input[name="accountHolderName"]').val(item.accountHolderName);
-		$('input[name="accountNumber"]').val(item.accountNumber);
-		$('input[name="ifscCode"]').val(item.ifscCode);
+		$("#accountId").val(item.accountId);
+		$("#accountHolderName").val(item.accountHolderName);
+		$("#accountNumber").val(item.accountNumber);
+		$("#ifscCode").val(item.ifscCode);
         vehicleNumber.html("").append('<option value="'+item.vehicleNumber+'" selected>'+item.vehicleNumber+'</option');
         itemToUpdate = item;
         addAct.attr("onclick", "saveAccount(false)");
@@ -72,7 +72,7 @@ function initAccounts() {
         	openAccountModal('Edit', args.item);
         },
         fields: [
-        	{title:'Account ID', name: "accountId", type: "text"},
+        	{title:'Account ID', name: "accountId", type: "text", visible: false},
         	{title: "Account holder name", name: "accountHolderName", type: "text"},
             {title: "Account Number", name: "accountNumber", type: "text"},
             {title: "IFSC code", name: "ifscCode", type: "text"},
