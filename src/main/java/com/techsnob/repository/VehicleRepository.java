@@ -2,6 +2,7 @@ package com.techsnob.repository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -21,4 +22,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 	@Modifying
 	@Query("UPDATE Vehicle SET vehicleType=?1,rcNumber=?2 WHERE vehicleId=?3")
 	void updateVehicle(String vehicleType, String rcNumber, Long vehicleId);
+
+	Optional<Vehicle> findByRcNumber(String rcNumber);
 }

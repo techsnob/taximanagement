@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.techsnob.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,9 @@ public class VehicleController {
 
 	@Autowired
 	private VehicleRepository vehicleRepository;
+
+	@Autowired
+	VehicleService vehicleService;
 
 	@GetMapping("/getvehicle/{vehicleId}")
 	public Optional<Vehicle> getVehicleDetails(@PathVariable Long vehicleId) {
@@ -51,7 +55,7 @@ public class VehicleController {
 			vehicle = vehicleRepository.findById(Long.valueOf(vehicleId)).get();
 			vehicle.setVehicleId(Long.valueOf(vehicleId));
 		}
-		return vehicleRepository.save(vehicle);
+			return vehicleService.saveVehicle(vehicle);
 	}
 
 	@PostMapping(path="/updatevehicle", consumes = MediaType.APPLICATION_JSON_VALUE, produces = {"application/json"})
