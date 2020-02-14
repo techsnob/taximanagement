@@ -1,0 +1,8 @@
+To access the MySQL shell type the following command and enter your MySQL root user password when prompted:
+mysql -u root -p
+A user account in MySQL consists of a user name and host name parts.
+To create a new MySQL user account, run the following command:
+CREATE USER 'taxiuser'@'%' IDENTIFIED BY 'taxiuser';
+Grant all privileges to a user account over a specific database:
+GRANT ALL PRIVILEGES ON taximanagement.* TO 'taxiuser'@'localhost';
+FLUSH PRIVILEGES;

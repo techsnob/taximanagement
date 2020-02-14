@@ -8,7 +8,7 @@ function saveDriver(isNew) {
     $("#driverDialog").modal("hide");
     setTimeout(function () {
         $("#driversLink").click();
-    }, 200);
+    }, 300);
 }
 
 function openDriverModal(mode, item){

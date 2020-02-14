@@ -63,3 +63,7 @@ https://www.html5rocks.com/en/tutorials/file/dndfiles/ -- Reading files in JavaS
                             //     .attr("href", 'media?fileName='+fileName+'&moduleName='+module+'&contentType='+fileType+'&columnId='+itemId)
                             //     .attr("target", "_blank")
                             //     .text("Link"); //.attr('<span><a href="delete">Delete</a></span>')
+
+https://stackoverflow.com/questions/13566735/how-to-export-mysql-schema-with-data
+https://stackoverflow.com/questions/6175473/mysql-export-schema-without-data
+https://stackoverflow.com/questions/13255685/export-tables-with-mysql-workbench-with-insert-statements
