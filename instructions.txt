@@ -6,3 +6,5 @@ CREATE USER 'taxiuser'@'%' IDENTIFIED BY 'taxiuser';
 Grant all privileges to a user account over a specific database:
 GRANT ALL PRIVILEGES ON taximanagement.* TO 'taxiuser'@'localhost';
 FLUSH PRIVILEGES;
+Export complete db:
+mysqldump.exe --defaults-file="c:\users\nvadak~1\appdata\local\temp\tmps5vo0k.cnf"  --user=root --host=localhost --protocol=tcp --port=3306 --default-character-set=utf8 --no-data --skip-triggers "taximanagement"
