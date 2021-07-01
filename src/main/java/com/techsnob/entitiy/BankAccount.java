@@ -34,10 +34,14 @@ public class BankAccount extends Auditable<String> implements Serializable{
 	@Column(length=30, name="acct_holder_name", nullable=false)
 	private String accountHolderName;
 
-	/*@OneToOne(cascade= CascadeType.ALL,fetch= FetchType.LAZY)
-	@MapsId("vehicle_id")
-	@JoinColumn(name="vehicle_number", referencedColumnName="rcNumber")
-	private Vehicle vehicleNumber;*/
+	/*
+	 * @OneToOne(cascade= CascadeType.ALL,fetch= FetchType.LAZY)
+	 * 
+	 * @MapsId("vehicle_id")
+	 * 
+	 * @JoinColumn(name="vehicle_number", referencedColumnName="rcNumber") private
+	 * Vehicle vehicleNumber;
+	 */
 
 	@Column(length=12, name="vehicle_number", nullable=false)
 	private String vehicleNumber;

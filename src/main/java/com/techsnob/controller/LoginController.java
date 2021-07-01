@@ -4,6 +4,7 @@ import com.techsnob.entitiy.User;
 import com.techsnob.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,7 +28,9 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
-	@PostMapping("/registration")
+	@PostMapping(value="/registration", 
+			consumes = {MediaType.APPLICATION_JSON_VALUE},
+			produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> register(@RequestBody User user) {
 		userService.saveUser(user);
 		return new ResponseEntity<>(user.getUsername(), HttpStatus.OK);
